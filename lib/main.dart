@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 void main() async {
   BoxGame _game = BoxGame();
   runApp(GameWidget(game: _game,));
-
   Util flameUtil = Util();
-  await flameUtil.fullScreen();
-  await flameUtil.setOrientation(DeviceOrientation.landscapeLeft);
-
+  flameUtil.fullScreen();
+  flameUtil.setOrientation(DeviceOrientation.landscapeLeft);
 }
