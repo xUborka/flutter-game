@@ -9,5 +9,5 @@ void main() async {
   runApp(GameWidget(game: _game,));
   Util flameUtil = Util();
   flameUtil.fullScreen();
-  flameUtil.setOrientation(DeviceOrientation.landscapeLeft);
+  flameUtil.setOrientation(DeviceOrientation.portraitUp);
 }
