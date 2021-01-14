@@ -1,7 +1,23 @@
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
+  // runApp(GameWidget(
+  //   game: MyGameSubClass(),
+  // ));
+}
+
+class MyGameSubClass extends Game {
+  @override
+  void render(Canvas canvas) {
+    // TODO: implement render
+  }
+
+  @override
+  void update(double t) {
+    // TODO: implement update
+  }
 }
 
 class MyApp extends StatelessWidget {
