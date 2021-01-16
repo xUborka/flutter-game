@@ -7,7 +7,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class BoxGame extends Game with TapDetector {
-  Color clr = Color(0xffffffff);
   bool isLeft = false;
   bool isTouching = false;
   Vector2 pos = Vector2(0, 0);

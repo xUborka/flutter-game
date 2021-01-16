@@ -1,0 +1,6 @@
+
+class Ship{
+  Ship(){
+    
+  }
+}
