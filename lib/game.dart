@@ -4,6 +4,7 @@ import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 
 class BoxGame extends Game with TapDetector {
   Color clr = Color(0xffffffff);
@@ -14,20 +15,20 @@ class BoxGame extends Game with TapDetector {
   int ctr = 0;
   List<Sprite> objects = [];
   List<Vector2> positions = [];
+  Sprite background;
 
-  Future<void> onLoad() async {
-    await images.load('ship_test.png');
-    await images.load('laserRed01.png');
-    pos = Vector2(size.x / 2 - 50, size.y - 100);
+  Future<void> onLoad() async{
+    await images.load('ship_test.png'); 
+    await images.load('laserRed01.png'); 
+    await images.load('BG.png'); 
+    pos = Vector2(size.x/2 - 50, size.y-100);
     player = Sprite(images.fromCache('ship_test.png'));
+    background = Sprite(images.fromCache('BG.png'));
   }
 
   void render(Canvas canvas) {
-    // Background
-    Rect bgRect = Rect.fromLTWH(0, 0, size.x, size.y);
-    Paint bgPaint = Paint();
-    bgPaint.color = Color(0xff000000);
-    canvas.drawRect(bgRect, bgPaint);
+    Paint opacityPaint = Paint()..color = Colors.white.withOpacity(0.2);
+    background.render(canvas, position: Vector2(0, 0), overridePaint: opacityPaint);
     // Ship
     player.render(canvas,
         position: Vector2(pos.x, size.y - 50), size: Vector2(50, 50));
