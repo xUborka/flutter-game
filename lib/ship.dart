@@ -1,6 +1,0 @@
-
-class Ship{
-  Ship(){
-  
-  }
-}

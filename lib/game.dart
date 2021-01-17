@@ -5,67 +5,82 @@ import 'package:flame/gestures.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_game/sprites/projectile.dart';
+import 'package:flutter_game/sprites/ship.dart';
 
-class BoxGame extends Game with TapDetector {
+class BoxGame extends BaseGame with TapDetector {
+  Ship myShip;
+  int ctr = 0;
+  List<Projectile> projectiles = [];
   bool isLeft = false;
   bool isTouching = false;
-  Vector2 pos = Vector2(0, 0);
-  Sprite player;
-  int ctr = 0;
-  List<Sprite> objects = [];
-  List<Vector2> positions = [];
   Sprite background;
 
-  Future<void> onLoad() async{
-    await images.load('ship_test.png'); 
-    await images.load('laserRed01.png'); 
-    await images.load('BG.png'); 
-    pos = Vector2(size.x/2 - 50, size.y-100);
-    player = Sprite(images.fromCache('ship_test.png'));
+  Future<void> onLoad() async {
+    await images.load('ship_test.png');
+    await images.load('laserRed01.png');
+    await images.load('BG.png');
+    myShip = Ship(
+      shipImage: images.fromCache('ship_test.png'),
+      screenSize: size,
+    );
     background = Sprite(images.fromCache('BG.png'));
   }
 
   void render(Canvas canvas) {
+    super.render(canvas);
+    // Dummy Background
     Paint opacityPaint = Paint()..color = Colors.white.withOpacity(0.2);
-    background.render(canvas, position: Vector2(0, 0), overridePaint: opacityPaint);
+    background.render(
+      canvas,
+      position: Vector2(0, 0),
+      overridePaint: opacityPaint,
+    );
     // Ship
-    player.render(canvas,
-        position: Vector2(pos.x, size.y - 50), size: Vector2(50, 50));
-    print(objects.length);
-    for (int i = 0; i < objects.length; i++) {
-      objects[i].render(canvas, position: positions[i], size: Vector2(9, 54));
+    // Save and restore required when rendering SpriteComponents
+    // for some reason ?!
+    canvas.save(); 
+    myShip.render(canvas);
+    canvas.restore();
+    // Projectiles
+    for (int i = 0; i < projectiles.length; i++) {
+      canvas.save();
+      projectiles[i].render(canvas);
+      canvas.restore();
     }
   }
 
   void update(double t) {
+    super.update(t);
     ctr += 1;
     List<int> todel = [];
-    for (int i = 0; i < objects.length; i++) {
-      positions[i].y -= 10;
-      if (positions[i].y <= -54) {
+    for (int i = 0; i < projectiles.length; i++) {
+      projectiles[i].position.y -= 10;
+      if (projectiles[i].position.y <= -54) {
         todel.add(i);
       }
     }
     for (int i = todel.length - 1; i >= 0; i--) {
-      positions.removeAt(i);
-      objects.removeAt(i);
+      projectiles.removeAt(i);
     }
     if (ctr >= 10) {
       ctr = 0;
-      objects.add(new Sprite(images.fromCache('laserRed01.png')));
-      positions.add(Vector2(pos.x + 25, pos.y));
+      projectiles.add(new Projectile(
+          screenSize: size,
+          projectileImage: images.fromCache('laserRed01.png'),
+          startPos: Vector2(myShip.position.x + 21, myShip.position.y - 50)));
     }
     if (isTouching) {
       if (isLeft) {
-        pos.x -= 5;
+        myShip.position.x -= 5;
       } else {
-        pos.x += 5;
+        myShip.position.x += 5;
       }
-      if (pos.x < 0) {
-        pos.x = 0;
+      if (myShip.position.x < 0) {
+        myShip.position.x = 0;
       }
-      if (pos.x > size.x - 100) {
-        pos.x = size.x - 100;
+      if (myShip.position.x > size.x - 50) {
+        myShip.position.x = size.x - 50;
       }
     }
   }
