@@ -45,7 +45,9 @@ flutter:
   assets:
     - assets/images/ship_test.png
     - assets/images/laserRed01.png
-    - assets/images/BG.png
+    - assets/images/Menu/BG.png
+    - assets/images/Menu/Exit_BTN.png
+    - assets/images/Menu/Start_BTN.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
