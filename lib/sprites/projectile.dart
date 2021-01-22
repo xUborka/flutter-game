@@ -9,4 +9,12 @@ class Projectile extends SpriteComponent {
       : super.fromSprite(Vector2(9.0, 54.0), new Sprite(projectileImage)) {
     this.position = startPos;
   }
+
+  @override
+  void render(Canvas c) {
+    c.save();
+    sprite.render(c, position: this.position, size: this.size);
+    super.render(c);
+    c.restore();
+  }
 }

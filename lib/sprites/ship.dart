@@ -11,4 +11,12 @@ class Ship extends SpriteComponent {
       screenSize.y - this.size.y,
     );
   }
+
+  @override
+  void render(Canvas c) {
+    c.save();
+    sprite.render(c, position: this.position, size: this.size);
+    super.render(c);
+    c.restore();
+  }
 }

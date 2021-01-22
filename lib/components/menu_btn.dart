@@ -1,16 +1,21 @@
-import 'package:flame/components/mixins/tapable.dart';
 import 'package:flame/components/position_component.dart';
 import 'package:flame/extensions/canvas.dart';
+import 'package:flame/extensions/vector2.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_game/game.dart';
 
-class MenuButton extends PositionComponent with Tapable {
+class MenuButton extends PositionComponent {
+  BoxGame game;
   Sprite img;
-  int test = 0;
-  MenuButton({img, position, size}) {
-    this.img = img;
-    this.position = position;
-    this.size = size;
+  bool tapped;
+  
+  MenuButton(_game, image) {
+    game = _game;
+    img = image;
+    tapped = false;
+    position = Vector2(0, 0);
+    size = Vector2(0, 0);
   }
 
   @override
@@ -21,23 +26,10 @@ class MenuButton extends PositionComponent with Tapable {
     c.restore();
   }
 
-  @override
-  bool onTapUp(TapUpDetails details) {
-    test -= 1;
-    print("tap up - $test");
+  bool onTapDown(TapDownDetails d){
     return true;
   }
-
-  @override
-  bool onTapDown(TapDownDetails details) {
-    test += 1;
-    print("tap down - $test");
-    return true;
-  }
-
-  @override
-  bool onTapCancel() {
-    print("tap cancel");
+  bool onTapUp(TapUpDetails d){
     return true;
   }
 }

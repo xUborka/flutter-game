@@ -5,7 +5,6 @@ import 'package:flame/gestures.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_game/components/menu_btn.dart';
 import 'package:flutter_game/sprites/projectile.dart';
 import 'package:flutter_game/sprites/ship.dart';
 import 'package:flutter_game/view.dart';
@@ -18,8 +17,6 @@ class BoxGame extends Game with TapDetector {
   bool isLeft = false;
   bool isTouching = false;
   Sprite background;
-  MenuButton start;
-  Sprite exit;
   HomeView homeView;
   View activeView = View.home;
   BoxGame();
@@ -35,37 +32,26 @@ class BoxGame extends Game with TapDetector {
       screenSize: size,
     );
     background = Sprite(images.fromCache('Menu/BG.png'));
-    start = MenuButton(
-        img: Sprite(images.fromCache('Menu/Start_BTN.png')),
-        position: Vector2(0, 0),
-        size: Vector2(0, 0));
-    exit = Sprite(images.fromCache('Menu/Exit_BTN.png'));
-    homeView = HomeView(this);
+    homeView = HomeView(game: this);
   }
 
   void render(Canvas canvas) {
     if (activeView == View.home) {
       homeView.render(canvas);
-    } else {}
-    return;
-    // Dummy Background
-    Paint opacityPaint = Paint()..color = Colors.white.withOpacity(0.2);
-    background.render(
-      canvas,
-      position: Vector2(0, 0),
-      overridePaint: opacityPaint,
-    );
-    // Ship
-    // Save and restore required when rendering SpriteComponents
-    // for some reason ?!
-    canvas.save();
-    myShip.render(canvas);
-    canvas.restore();
-    // Projectiles
-    for (int i = 0; i < projectiles.length; i++) {
-      canvas.save();
-      projectiles[i].render(canvas);
-      canvas.restore();
+    } else if (activeView == View.game) {
+      // Dummy Background
+      Paint opacityPaint = Paint()..color = Colors.white.withOpacity(0.2);
+      background.render(
+        canvas,
+        position: Vector2(0, 0),
+        overridePaint: opacityPaint,
+      );
+      // Ship
+      myShip.render(canvas);
+      // Projectiles
+      for (int i = 0; i < projectiles.length; i++) {
+        projectiles[i].render(canvas);
+      }
     }
   }
 
@@ -105,9 +91,7 @@ class BoxGame extends Game with TapDetector {
 
   void onTapDown(TapDownDetails d) {
     if (activeView == View.home) {
-      if (start.toRect().contains(d.globalPosition)){
-        start.onTapDown(d);
-      }
+      homeView.handleTapDown(d);
     }
     isTouching = true;
     double screenCenterX = size.x / 2;
@@ -120,9 +104,7 @@ class BoxGame extends Game with TapDetector {
 
   void onTapUp(TapUpDetails tapUpDetails) {
     if (activeView == View.home) {
-      if (start.toRect().contains(tapUpDetails.globalPosition)){
-        start.onTapUp(tapUpDetails);
-      }
+      homeView.handleTapUp(tapUpDetails);
     }
     isTouching = false;
   }
