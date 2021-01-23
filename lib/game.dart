@@ -4,6 +4,7 @@ import 'package:flame/extensions/vector2.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flame/sprite.dart';
+import 'package:flame/text_config.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_game/sprites/enemy.dart';
@@ -23,6 +24,8 @@ class SpaceGame extends Game with TapDetector {
   HomeView homeView;
   View activeView = View.home;
   SpaceGame();
+  TextConfig ingameTextConfig = TextConfig(color: Colors.white);
+  int score = 0;
 
 //todo Global valamibe és úgy hivatkozni rá, nem stringként lejjebb
   Future<void> onLoad() async {
@@ -66,6 +69,8 @@ class SpaceGame extends Game with TapDetector {
       // Projectiles
       projectiles.forEach((projectile) => projectile.render(canvas));
       enemies.forEach((enemy) => enemy.render(canvas));
+
+      ingameTextConfig.render(canvas, "Score : $score", Vector2(0, 0));
     }
   }
 
@@ -94,6 +99,8 @@ class SpaceGame extends Game with TapDetector {
           startPos: Vector2(Random().nextDouble() * this.size.x, -50.0)));
     }
     if (ctr >= 10) {
+      //random score incrementation
+      score += 1;
       ctr = 0;
       projectiles.add(new Projectile(
           screenSize: size,
