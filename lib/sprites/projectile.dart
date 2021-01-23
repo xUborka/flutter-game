@@ -5,9 +5,12 @@ import 'package:flame/sprite.dart';
 
 class Projectile extends SpriteComponent {
   Vector2 screenSize;
-  Projectile({Image projectileImage, this.screenSize, Vector2 startPos})
+  double speed;
+  Projectile(
+      {Image projectileImage, this.screenSize, Vector2 startPos, double speed})
       : super.fromSprite(Vector2(9.0, 54.0), new Sprite(projectileImage)) {
     this.position = startPos;
+    this.speed = speed;
   }
 
   @override
@@ -16,5 +19,9 @@ class Projectile extends SpriteComponent {
     sprite.render(c, position: this.position, size: this.size);
     super.render(c);
     c.restore();
+  }
+
+  void move() {
+    this.position.y -= speed;
   }
 }

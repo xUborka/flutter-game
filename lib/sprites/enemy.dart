@@ -21,7 +21,11 @@ class Enemy extends SpriteComponent {
   }
 
   @override
-  void update(double dt){
+  void update(double dt) {
     super.update(dt);
+  }
+
+  void move() {
+    this.position.y += this.speed;
   }
 }

@@ -13,7 +13,7 @@ import 'package:flutter_game/view.dart';
 import 'package:flutter_game/views/home.dart';
 
 class SpaceGame extends Game with TapDetector {
-  Ship myShip;
+  Ship ship;
   int ctr = 0;
   List<Projectile> projectiles = [];
   List<Enemy> enemies = [];
@@ -24,21 +24,28 @@ class SpaceGame extends Game with TapDetector {
   View activeView = View.home;
   SpaceGame();
 
+//todo Global valamibe és úgy hivatkozni rá, nem stringként lejjebb
   Future<void> onLoad() async {
-    await images.load('ship_test.png');
-    await images.load('laserRed01.png');
-    await images.load('Enemies/black_enemy.png');
-    await images.load('Enemies/blue_enemy.png');
-    await images.load('Enemies/orange_enemy.png');
-    await images.load('Enemies/pink_enemy.png');
-    await images.load('Enemies/yellow_enemy.png');
-    await images.load('Menu/BG.png');
-    await images.load('Menu/Start_BTN.png');
-    await images.load('Menu/Exit_BTN.png');
-    myShip = Ship(
-      shipImage: images.fromCache('ship_test.png'),
-      screenSize: size,
-    );
+    await Future.forEach([
+      "ship_test.png",
+      "laserRed01.png",
+      "Enemies/black_enemy.png",
+      "Enemies/blue_enemy.png",
+      "Enemies/orange_enemy.png",
+      "Enemies/pink_enemy.png",
+      "Enemies/yellow_enemy.png",
+      "Menu/BG.png",
+      "Menu/Start_BTN.png",
+      "Menu/Exit_BTN.png"
+    ], (image) async {
+      await images.load(image);
+    });
+
+    ship = Ship(
+        game: this,
+        shipImage: images.fromCache('ship_test.png'),
+        screenSize: size,
+        speed: 5);
     background = Sprite(images.fromCache('Menu/BG.png'));
     homeView = HomeView(game: this);
   }
@@ -55,7 +62,7 @@ class SpaceGame extends Game with TapDetector {
         overridePaint: opacityPaint,
       );
       // Ship
-      myShip.render(canvas);
+      ship.render(canvas);
       // Projectiles
       projectiles.forEach((projectile) => projectile.render(canvas));
       enemies.forEach((enemy) => enemy.render(canvas));
@@ -66,7 +73,7 @@ class SpaceGame extends Game with TapDetector {
     ctr += 1;
     List<int> todel = [];
     for (int i = 0; i < projectiles.length; i++) {
-      projectiles[i].position.y -= 10;
+      projectiles[i].move();
       if (projectiles[i].position.y <= -54) {
         todel.add(i);
       }
@@ -74,32 +81,27 @@ class SpaceGame extends Game with TapDetector {
     for (int i = todel.length - 1; i >= 0; i--) {
       projectiles.removeAt(i);
     }
-    enemies.forEach((enemy) => enemy.position.y += enemy.speed);
+    enemies.forEach((enemy) => enemy.move());
     if (ctr >= 10) {
       // HACKS
       List<String> colors = ["pink", "orange", "yellow", "blue", "black"];
 
-      enemies.add(Enemy(enemyImage: images.fromCache('Enemies/${colors[Random().nextInt(5)]}_enemy.png'),screenSize: this.size, startPos: Vector2(Random().nextDouble() * this.size.x,-50.0)));
+      enemies.add(Enemy(
+          enemyImage: images
+              .fromCache('Enemies/${colors[Random().nextInt(5)]}_enemy.png'),
+          screenSize: this.size,
+          startPos: Vector2(Random().nextDouble() * this.size.x, -50.0)));
     }
     if (ctr >= 10) {
       ctr = 0;
       projectiles.add(new Projectile(
           screenSize: size,
           projectileImage: images.fromCache('laserRed01.png'),
-          startPos: Vector2(myShip.position.x + 21, myShip.position.y - 50)));
+          startPos: Vector2(ship.position.x + 21, ship.position.y - 50),
+          speed: 10));
     }
     if (isTouching) {
-      if (isLeft) {
-        myShip.position.x -= 5;
-      } else {
-        myShip.position.x += 5;
-      }
-      if (myShip.position.x < 0) {
-        myShip.position.x = 0;
-      }
-      if (myShip.position.x > size.x - 50) {
-        myShip.position.x = size.x - 50;
-      }
+      ship.move(isLeft);
     }
   }
 
@@ -109,11 +111,7 @@ class SpaceGame extends Game with TapDetector {
     }
     isTouching = true;
     double screenCenterX = size.x / 2;
-    if (d.globalPosition.dx < screenCenterX) {
-      isLeft = true;
-    } else {
-      isLeft = false;
-    }
+    isLeft = d.globalPosition.dx < screenCenterX;
   }
 
   void onTapUp(TapUpDetails tapUpDetails) {
