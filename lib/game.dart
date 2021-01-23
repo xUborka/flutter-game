@@ -22,10 +22,10 @@ class SpaceGame extends Game with TapDetector {
   int ctr = 0;
 
   /// TODO : Document
-  List<Projectile> projectiles = [];
+  List<Projectile> projectiles = <Projectile>[];
 
   /// TODO : Document
-  List<Enemy> enemies = [];
+  List<Enemy> enemies = <Enemy>[];
 
   /// TODO : Document
   bool isLeft = false;
@@ -109,8 +109,8 @@ class SpaceGame extends Game with TapDetector {
   @override
   void update(double t) {
     ctr += 1;
-    List<int> todelProjectiles = [];
-    List<int> todelEnemies = [];
+    final List<int> todelProjectiles = <int>[];
+    final List<int> todelEnemies = <int>[];
     for (int i = 0; i < projectiles.length; i++) {
       projectiles[i].move();
       if (projectiles[i].position.y <= -54) {
@@ -133,7 +133,13 @@ class SpaceGame extends Game with TapDetector {
     }
     if (ctr >= 10) {
       // HACKS
-      final List<String> colors = ['pink', 'orange', 'yellow', 'blue', 'black'];
+      final List<String> colors = <String>[
+        'pink',
+        'orange',
+        'yellow',
+        'blue',
+        'black'
+      ];
       enemies.add(
         Enemy(
           enemyImage: images
@@ -159,6 +165,7 @@ class SpaceGame extends Game with TapDetector {
     }
     // Test projectile impact
     bamm();
+
     if (isTouching) {
       ship.move(toLeft: isLeft);
     }
@@ -166,9 +173,9 @@ class SpaceGame extends Game with TapDetector {
 
   /// TODO : Document
   void bamm() {
-    List<int> todelProjectile = [];
+    final List<int> todelProjectile = <int>[];
     for (int i = 0; i < projectiles.length; i++) {
-      List<int> todelEnemy = [];
+      final List<int> todelEnemy = <int>[];
       for (int j = 0; j < enemies.length; j++) {
         final Projectile crntProjectile = projectiles[i];
         final Enemy crntEnemy = enemies[j];
