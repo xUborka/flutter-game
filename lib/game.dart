@@ -76,27 +76,37 @@ class SpaceGame extends Game with TapDetector {
 
   void update(double t) {
     ctr += 1;
-    List<int> todel = [];
+    List<int> todel_proj = [];
+    List<int> todel_enemy = [];
     for (int i = 0; i < projectiles.length; i++) {
       projectiles[i].move();
       if (projectiles[i].position.y <= -54) {
-        todel.add(i);
+        todel_proj.add(i);
       }
     }
 
-    for (int i = todel.length - 1; i >= 0; i--) {
+    for (int i = todel_enemy.length - 1; i >= 0; i--) {
       projectiles.removeAt(i);
     }
     enemies.forEach((enemy) => enemy.move());
+    for (int i = 0; i < enemies.length; i++) {
+      if (enemies[i].position.y > size.y) {
+        todel_enemy.add(i);
+      }
+    }
+    for (int i = todel_enemy.length - 1; i >= 0; i--) {
+      enemies.removeAt(i);
+    }
     if (ctr >= 10) {
       // HACKS
-      var colors = ["pink", "orange", "yellow", "blue", "black"];
-
+      List<String> colors = ["pink", "orange", "yellow", "blue", "black"];
       enemies.add(Enemy(
           enemyImage: images
               .fromCache('Enemies/${colors[Random().nextInt(5)]}_enemy.png'),
           screenSize: this.size,
-          startPos: Vector2(Random().nextDouble() * this.size.x, -50.0)));
+          startPos: Vector2(
+              min(Random().nextDouble() * this.size.x, this.size.x - 50),
+              -50.0)));
     }
     if (ctr >= 10) {
       //random score incrementation
