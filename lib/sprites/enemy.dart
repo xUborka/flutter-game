@@ -9,7 +9,7 @@ class Enemy extends SpriteComponent {
   Enemy({Image enemyImage, this.screenSize, Vector2 startPos})
       : super.fromSprite(Vector2(50.0, 50.0), new Sprite(enemyImage)) {
     this.position = startPos;
-    this.speed = 3;
+    this.speed = 2;
   }
 
   @override

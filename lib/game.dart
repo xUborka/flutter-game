@@ -155,7 +155,7 @@ class SpaceGame extends Game with TapDetector {
     }
     print('proj : ${todel_proj.length}');
     for (int i = todel_proj.length - 1; i >= 0; i--) {
-      if (projectiles.length >= todel_proj[i]) {
+      if (projectiles.length > todel_proj[i]) {
         projectiles.removeAt(todel_proj[i]);
       }
     }
