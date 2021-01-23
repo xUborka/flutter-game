@@ -85,8 +85,8 @@ class SpaceGame extends Game with TapDetector {
       }
     }
 
-    for (int i = todel_enemy.length - 1; i >= 0; i--) {
-      projectiles.removeAt(i);
+    for (int i = todel_proj.length - 1; i >= 0; i--) {
+      projectiles.removeAt(todel_proj[i]);
     }
     enemies.forEach((enemy) => enemy.move());
     for (int i = 0; i < enemies.length; i++) {
@@ -94,8 +94,10 @@ class SpaceGame extends Game with TapDetector {
         todel_enemy.add(i);
       }
     }
+    print(enemies.length);
+    print(projectiles.length);
     for (int i = todel_enemy.length - 1; i >= 0; i--) {
-      enemies.removeAt(i);
+      enemies.removeAt(todel_enemy[i]);
     }
     if (ctr >= 10) {
       // HACKS
