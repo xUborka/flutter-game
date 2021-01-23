@@ -78,13 +78,14 @@ class SpaceGame extends Game with TapDetector {
         todel.add(i);
       }
     }
+
     for (int i = todel.length - 1; i >= 0; i--) {
       projectiles.removeAt(i);
     }
     enemies.forEach((enemy) => enemy.move());
     if (ctr >= 10) {
       // HACKS
-      List<String> colors = ["pink", "orange", "yellow", "blue", "black"];
+      var colors = ["pink", "orange", "yellow", "blue", "black"];
 
       enemies.add(Enemy(
           enemyImage: images

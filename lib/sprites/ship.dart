@@ -1,14 +1,15 @@
 import 'dart:ui';
 import 'package:flame/components/sprite_component.dart';
 import 'package:flame/extensions/vector2.dart';
-import 'package:flame/game/game.dart';
 import 'package:flame/sprite.dart';
 
+import '../game.dart';
+
 class Ship extends SpriteComponent {
-  Game game;
+  SpaceGame game;
   Vector2 screenSize;
   double speed;
-  Ship({Game game, Image shipImage, this.screenSize, double speed})
+  Ship({SpaceGame game, Image shipImage, this.screenSize, double speed})
       : super.fromSprite(Vector2.all(50.0), new Sprite(shipImage)) {
     this.position = Vector2(
       screenSize.x / 2 - this.size.x / 2,
@@ -27,16 +28,16 @@ class Ship extends SpriteComponent {
   }
 
   void move(bool toLeft) {
-    if (toLeft) {
-      this.position.x -= 5;
-    } else {
-      this.position.x += 5;
-    }
+    this.position.x += (toLeft ? -1 : 1) * speed;
+
     if (this.position.x < 0) {
       this.position.x = 0;
     }
-    if (this.position.x > game.size.x - 50) {
-      this.position.x = game.size.x - 50;
+
+    var maxPos = game.size.x - 50;
+
+    if (this.position.x > maxPos) {
+      this.position.x = maxPos;
     }
   }
 }
