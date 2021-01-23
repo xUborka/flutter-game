@@ -2,42 +2,49 @@ import 'dart:ui';
 import 'package:flame/components/sprite_component.dart';
 import 'package:flame/extensions/vector2.dart';
 import 'package:flame/sprite.dart';
+import 'package:flutter_game/game.dart';
 
-import '../game.dart';
-
+/// TODO : Document
 class Ship extends SpriteComponent {
+  /// TODO : Document
   SpaceGame game;
+
+  /// TODO : Document
   Vector2 screenSize;
+
+  /// TODO : Document
   double speed;
-  Ship({SpaceGame game, Image shipImage, this.screenSize, double speed})
-      : super.fromSprite(Vector2.all(50.0), new Sprite(shipImage)) {
-    this.position = Vector2(
-      screenSize.x / 2 - this.size.x / 2,
-      screenSize.y - this.size.y,
+
+  /// TODO : Document
+  Ship({this.game, Image shipImage, this.screenSize, this.speed})
+      : super.fromSprite(Vector2.all(50.0), Sprite(shipImage)) {
+    position = Vector2(
+      screenSize.x / 2 - size.x / 2,
+      screenSize.y - size.y,
     );
-    this.speed = speed;
-    this.game = game;
   }
 
   @override
   void render(Canvas c) {
     c.save();
-    sprite.render(c, position: this.position, size: this.size);
+    sprite.render(c, position: position, size: size);
     super.render(c);
     c.restore();
   }
 
-  void move(bool toLeft) {
-    this.position.x += (toLeft ? -1 : 1) * speed;
+  /// TODO : Document
+  /// TODO : Refactor bool param to 2 functions
+  void move({bool toLeft}) {
+    position.x += (toLeft ? -1 : 1) * speed;
 
-    if (this.position.x < 0) {
-      this.position.x = 0;
+    if (position.x < 0) {
+      position.x = 0;
     }
 
-    var maxPos = game.size.x - 50;
+    final double maxPos = game.size.x - 50;
 
-    if (this.position.x > maxPos) {
-      this.position.x = maxPos;
+    if (position.x > maxPos) {
+      position.x = maxPos;
     }
   }
 }

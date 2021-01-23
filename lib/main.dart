@@ -4,10 +4,11 @@ import 'package:flame/util.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
-void main() async {
-  SpaceGame _game = SpaceGame();
-  runApp(GameWidget(game: _game,));
-  Util flameUtil = Util();
+/// TODO : Document
+Future<void> main() async {
+  final SpaceGame _game = SpaceGame();
+  runApp(GameWidget(game: _game));
+  final Util flameUtil = Util();
   flameUtil.fullScreen();
   flameUtil.setOrientation(DeviceOrientation.portraitUp);
 }

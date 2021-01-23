@@ -1,10 +1,14 @@
+import 'package:flame/sprite.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/components/mixins/tapable.dart';
 import 'package:flutter_game/components/menu/menu_btn.dart';
+import 'package:flutter_game/game.dart';
 
+/// TODO : Document
 class ExitButton extends MenuButton with Tapable {
-  ExitButton(_game, _img) : super(_game, _img);
+  /// TODO : Document
+  ExitButton(SpaceGame game, Sprite img) : super(game, img);
 
   @override
   bool onTapDown(TapDownDetails d) {

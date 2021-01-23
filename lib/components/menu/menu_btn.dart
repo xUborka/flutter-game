@@ -5,14 +5,19 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_game/game.dart';
 
+/// TODO : Document What happens here
 class MenuButton extends PositionComponent {
+  /// TODO : Document
   SpaceGame game;
+
+  /// TODO : Document
   Sprite img;
+
+  /// TODO : Document
   bool tapped;
 
-  MenuButton(_game, image) {
-    game = _game;
-    img = image;
+  /// TODO : Document
+  MenuButton(this.game, this.img) {
     tapped = false;
     position = Vector2(0, 0);
     size = Vector2(0, 0);
@@ -21,15 +26,18 @@ class MenuButton extends PositionComponent {
   @override
   void render(Canvas c) {
     c.save();
-    img.render(c, position: this.position, size: this.size);
+    img.render(c, position: position, size: size);
     super.render(c);
     c.restore();
   }
 
-  bool onTapDown(TapDownDetails d){
+  /// TODO : Document
+  bool onTapDown(TapDownDetails d) {
     return true;
   }
-  bool onTapUp(TapUpDetails d){
+
+  /// TODO : Document
+  bool onTapUp(TapUpDetails d) {
     return true;
   }
 }
