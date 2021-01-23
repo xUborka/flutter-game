@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/components/mixins/tapable.dart';
-import 'package:flutter_game/components/menu_btn.dart';
+import 'package:flutter_game/components/menu/menu_btn.dart';
 
 class ExitButton extends MenuButton with Tapable {
   ExitButton(_game, _img) : super(_game, _img);
@@ -15,15 +15,10 @@ class ExitButton extends MenuButton with Tapable {
   @override
   bool onTapUp(TapUpDetails d) {
     if (tapped) {
-      Future.delayed(const Duration(milliseconds: 250), () {
+      Future.delayed(const Duration(milliseconds: 100), () {
         SystemChannels.platform.invokeMethod('SystemNavigator.pop');
       });
     }
     return true;
   }
-
-  // @override
-  // bool onTapCancel() {
-  //   return true;
-  // }
 }

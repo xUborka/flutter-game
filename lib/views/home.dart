@@ -2,13 +2,13 @@ import 'dart:ui';
 import 'package:flame/extensions/vector2.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter_game/components/exit_btn.dart';
-import 'package:flutter_game/components/menu_btn.dart';
-import 'package:flutter_game/components/start_btn.dart';
+import 'package:flutter_game/components/menu/exit_btn.dart';
+import 'package:flutter_game/components/menu/menu_btn.dart';
+import 'package:flutter_game/components/menu/start_btn.dart';
 import 'package:flutter_game/game.dart';
 
 class HomeView {
-  final BoxGame game;
+  final SpaceGame game;
   double btnWidth;
   MenuButton startButton;
   MenuButton exitButton;

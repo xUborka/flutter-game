@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flame/extensions/vector2.dart';
 import 'package:flame/game.dart';
@@ -5,25 +6,32 @@ import 'package:flame/gestures.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_game/sprites/enemy.dart';
 import 'package:flutter_game/sprites/projectile.dart';
 import 'package:flutter_game/sprites/ship.dart';
 import 'package:flutter_game/view.dart';
 import 'package:flutter_game/views/home.dart';
 
-class BoxGame extends Game with TapDetector {
+class SpaceGame extends Game with TapDetector {
   Ship myShip;
   int ctr = 0;
   List<Projectile> projectiles = [];
+  List<Enemy> enemies = [];
   bool isLeft = false;
   bool isTouching = false;
   Sprite background;
   HomeView homeView;
   View activeView = View.home;
-  BoxGame();
+  SpaceGame();
 
   Future<void> onLoad() async {
     await images.load('ship_test.png');
     await images.load('laserRed01.png');
+    await images.load('Enemies/black_enemy.png');
+    await images.load('Enemies/blue_enemy.png');
+    await images.load('Enemies/orange_enemy.png');
+    await images.load('Enemies/pink_enemy.png');
+    await images.load('Enemies/yellow_enemy.png');
     await images.load('Menu/BG.png');
     await images.load('Menu/Start_BTN.png');
     await images.load('Menu/Exit_BTN.png');
@@ -49,9 +57,8 @@ class BoxGame extends Game with TapDetector {
       // Ship
       myShip.render(canvas);
       // Projectiles
-      for (int i = 0; i < projectiles.length; i++) {
-        projectiles[i].render(canvas);
-      }
+      projectiles.forEach((projectile) => projectile.render(canvas));
+      enemies.forEach((enemy) => enemy.render(canvas));
     }
   }
 
@@ -66,6 +73,13 @@ class BoxGame extends Game with TapDetector {
     }
     for (int i = todel.length - 1; i >= 0; i--) {
       projectiles.removeAt(i);
+    }
+    enemies.forEach((enemy) => enemy.position.y += enemy.speed);
+    if (ctr >= 10) {
+      // HACKS
+      List<String> colors = ["pink", "orange", "yellow", "blue", "black"];
+
+      enemies.add(Enemy(enemyImage: images.fromCache('Enemies/${colors[Random().nextInt(5)]}_enemy.png'),screenSize: this.size, startPos: Vector2(Random().nextDouble() * this.size.x,-50.0)));
     }
     if (ctr >= 10) {
       ctr = 0;

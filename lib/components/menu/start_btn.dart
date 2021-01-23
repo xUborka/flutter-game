@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flame/components/mixins/tapable.dart';
-import 'package:flutter_game/components/menu_btn.dart';
+import 'package:flutter_game/components/menu/menu_btn.dart';
 import 'package:flutter_game/view.dart';
 
 class StartButton extends MenuButton with Tapable {
@@ -19,9 +19,4 @@ class StartButton extends MenuButton with Tapable {
     }
     return true;
   }
-
-  // @override
-  // bool onTapCancel() {
-  //   return true;
-  // }
 }

@@ -6,10 +6,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_game/game.dart';
 
 class MenuButton extends PositionComponent {
-  BoxGame game;
+  SpaceGame game;
   Sprite img;
   bool tapped;
-  
+
   MenuButton(_game, image) {
     game = _game;
     img = image;

@@ -45,6 +45,11 @@ flutter:
   assets:
     - assets/images/ship_test.png
     - assets/images/laserRed01.png
+    - assets/images/Enemies/yellow_enemy.png
+    - assets/images/Enemies/black_enemy.png
+    - assets/images/Enemies/blue_enemy.png
+    - assets/images/Enemies/orange_enemy.png
+    - assets/images/Enemies/pink_enemy.png
     - assets/images/Menu/BG.png
     - assets/images/Menu/Exit_BTN.png
     - assets/images/Menu/Start_BTN.png
