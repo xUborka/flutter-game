@@ -94,8 +94,8 @@ class SpaceGame extends Game with TapDetector {
         todel_enemy.add(i);
       }
     }
-    print(enemies.length);
-    print(projectiles.length);
+    // print(enemies.length);
+    // print(projectiles.length);
     for (int i = todel_enemy.length - 1; i >= 0; i--) {
       enemies.removeAt(todel_enemy[i]);
     }
@@ -120,8 +120,44 @@ class SpaceGame extends Game with TapDetector {
           startPos: Vector2(ship.position.x + 21, ship.position.y - 50),
           speed: 10));
     }
+    // Test projectile impact
+    bamm();
     if (isTouching) {
       ship.move(isLeft);
+    }
+  }
+
+  void bamm() {
+    List<int> todel_proj = [];
+    for (int i = 0; i < projectiles.length; i++) {
+      List<int> todel_enemy = [];
+      for (int j = 0; j < enemies.length; j++) {
+        Projectile crntProjectile = projectiles[i];
+        Enemy crntEnemy = enemies[j];
+        Offset peakPoint = Offset(
+            crntProjectile.position.x + crntProjectile.size.x / 2.0,
+            crntProjectile.position.y);
+        // print(peakPoint);
+        // print(peakPoint);
+        if (crntEnemy.toRect().contains(peakPoint)) {
+          // print('true');
+          todel_enemy.add(j);
+          todel_proj.add(i);
+        }
+      }
+      print('enemy : ${todel_enemy.length}');
+      for (int k = todel_enemy.length - 1; k >= 0; k--) {
+        if (enemies.length > todel_enemy[k]) {
+          enemies.removeAt(todel_enemy[k]);
+          score += 10;
+        }
+      }
+    }
+    print('proj : ${todel_proj.length}');
+    for (int i = todel_proj.length - 1; i >= 0; i--) {
+      if (projectiles.length >= todel_proj[i]) {
+        projectiles.removeAt(todel_proj[i]);
+      }
     }
   }
 
