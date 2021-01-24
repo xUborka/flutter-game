@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flame/extensions/vector2.dart';
 import 'package:flame/sprite.dart';
-import 'package:flame/text_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_game/components/hud.dart';
 import 'package:flutter_game/game.dart';
 import 'package:flutter_game/sprites/enemy.dart';
 import 'package:flutter_game/sprites/projectile.dart';
@@ -13,6 +13,9 @@ import 'package:flutter_game/sprites/ship.dart';
 class GameView {
   /// TODO : Document
   final SpaceGame game;
+
+  /// TODO : Document
+  Hud hud;
 
   /// TODO : Document
   Ship ship;
@@ -39,16 +42,16 @@ class GameView {
   bool isTouching = false;
 
   /// TODO : Document
-  TextConfig ingameTextConfig = TextConfig(color: Colors.white);
-
-  /// TODO : Document
-  GameView({this.game}) {
+  GameView(this.game) {
     background = Sprite(game.images.fromCache('Menu/BG.png'));
+
     ship = Ship(
       game: game,
       shipImage: game.images.fromCache('ship_test.png'),
       speed: 5,
     );
+
+    hud = Hud(game);
   }
 
   /// TODO : Document
@@ -66,11 +69,10 @@ class GameView {
     projectiles.forEach((Projectile projectile) => projectile.render(canvas));
     enemies.forEach((Enemy enemy) => enemy.render(canvas));
 
-    ingameTextConfig.render(canvas, 'Score : $score', Vector2(0, 0));
+    hud.render(canvas);
   }
 
   /// TODO : Document
-  @override
   void update(double t) {
     ctr += 1;
     final List<int> todelProjectiles = <int>[];
@@ -108,14 +110,13 @@ class GameView {
         Enemy(
           enemyImage: game.images
               .fromCache('Enemies/${colors[Random().nextInt(5)]}_enemy.png'),
-          startPos:
-              Vector2(min(Random().nextDouble() * game.size.x, game.size.x - 50), -50.0),
+          startPos: Vector2(
+              min(Random().nextDouble() * game.size.x, game.size.x - 50),
+              -50.0),
         ),
       );
     }
     if (ctr >= 10) {
-      //random score incrementation
-      score += 1;
       ctr = 0;
       projectiles.add(
         Projectile(

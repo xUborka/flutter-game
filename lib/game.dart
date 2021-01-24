@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_game/view.dart';
 import 'package:flutter_game/views/game_view.dart';
 import 'package:flutter_game/views/home_view.dart';
+import 'package:flutter_game/views/options_view.dart';
 
 /// TODO : Document
 class SpaceGame extends Game with TapDetector {
@@ -14,6 +15,9 @@ class SpaceGame extends Game with TapDetector {
 
   /// TODO : Document
   GameView gameView;
+
+  /// TODO : Document
+  OptionsView optionsView;
 
   /// TODO : Document
   View activeView = View.home;
@@ -35,53 +39,92 @@ class SpaceGame extends Game with TapDetector {
         'Enemies/yellow_enemy.png',
         'Menu/BG.png',
         'Menu/Start_BTN.png',
-        'Menu/Exit_BTN.png'
+        'Menu/Exit_BTN.png',
+        'Menu/Options_BTN.png',
+        'Menu/Back_BTN.png'
       ],
       (String image) async {
         await images.load(image);
       },
     );
-    homeView = HomeView(game: this);
-    gameView = GameView(game: this);
+    homeView = HomeView(this);
+    gameView = GameView(this);
+    optionsView = OptionsView(this);
   }
 
   /// TODO : Document
   @override
   void render(Canvas canvas) {
-    if (activeView == View.home) {
-      homeView.render(canvas);
-    } else if (activeView == View.game) {
-      gameView.render(canvas);
+    switch (activeView) {
+      case View.home:
+        homeView.render(canvas);
+        break;
+      case View.game:
+        gameView.render(canvas);
+        break;
+      case View.lost:
+        // TODO: Handle this case.
+        break;
+      case View.options:
+        optionsView.render(canvas);
+        break;
     }
   }
 
   /// TODO : Document
   @override
   void update(double t) {
-    if (activeView == View.home) {
-      homeView.update(t);
-    } else if (activeView == View.game) {
-      gameView.update(t);
+    switch (activeView) {
+      case View.home:
+        homeView.update(t);
+        break;
+      case View.game:
+        gameView.update(t);
+        break;
+      case View.lost:
+        // TODO: Handle this case.
+        break;
+      case View.options:
+        optionsView.update(t);
+        break;
     }
   }
 
   /// TODO : Document
   @override
   void onTapDown(TapDownDetails d) {
-    if (activeView == View.home) {
-      homeView.handleTapDown(d);
-    } else if (activeView == View.game) {
-      gameView.handleTapDown(d);
+    switch (activeView) {
+      case View.home:
+        homeView.handleTapDown(d);
+        break;
+      case View.game:
+        gameView.handleTapDown(d);
+        break;
+      case View.lost:
+        // TODO: Handle this case.
+        break;
+      case View.options:
+        optionsView.handleTapDown(d);
+        break;
     }
   }
 
   /// TODO : Document
   @override
-  void onTapUp(TapUpDetails tapUpDetails) {
-    if (activeView == View.home) {
-      homeView.handleTapUp(tapUpDetails);
-    } else if (activeView == View.game) {
-      gameView.handleTapUp(tapUpDetails);
+  void onTapUp(TapUpDetails d) {
+    switch (activeView) {
+      case View.home:
+        homeView.handleTapUp(d);
+        break;
+      case View.game:
+        gameView.handleTapUp(d);
+        break;
+      case View.lost:
+        // TODO: Handle this case.
+        break;
+      case View.options:
+        optionsView.handleTapUp(d);
+        break;
     }
   }
 }

@@ -54,6 +54,8 @@ flutter:
     - assets/images/Menu/BG.png
     - assets/images/Menu/Exit_BTN.png
     - assets/images/Menu/Start_BTN.png
+    - assets/images/Menu/Options_BTN.png
+    - assets/images/Menu/Back_BTN.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

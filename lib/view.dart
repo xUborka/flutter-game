@@ -1,10 +1,14 @@
-
 /// TODO : Document
-enum View{
-/// TODO : Document
+enum View {
+  /// TODO : Document
   home,
-/// TODO : Document
+
+  /// TODO : Document
   game,
-/// TODO : Document
-  lost
+
+  /// TODO : Document
+  lost,
+
+  /// TODO : Document
+  options,
 }

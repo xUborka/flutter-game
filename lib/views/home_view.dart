@@ -4,6 +4,7 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_game/components/menu/exit_btn.dart';
 import 'package:flutter_game/components/menu/menu_btn.dart';
+import 'package:flutter_game/components/menu/options_btn.dart';
 import 'package:flutter_game/components/menu/start_btn.dart';
 import 'package:flutter_game/game.dart';
 
@@ -22,16 +23,17 @@ class HomeView {
   MenuButton exitButton;
 
   /// TODO : Document
-  HomeView({this.game}) {
+  MenuButton optionsButton;
+
+  /// TODO : Document
+  HomeView(this.game) {
     btnWidth = game.size.x * 0.65;
-    startButton = StartButton(
-      game,
-      Sprite(game.images.fromCache('Menu/Start_BTN.png')),
-    );
-    exitButton = ExitButton(
-      game,
-      Sprite(game.images.fromCache('Menu/Exit_BTN.png')),
-    );
+    startButton =
+        StartButton(game, Sprite(game.images.fromCache('Menu/Start_BTN.png')));
+    exitButton =
+        ExitButton(game, Sprite(game.images.fromCache('Menu/Exit_BTN.png')));
+    optionsButton = OptionsButton(
+        game, Sprite(game.images.fromCache('Menu/Options_BTN.png')));
   }
 
   /// TODO : Document
@@ -40,6 +42,8 @@ class HomeView {
       startButton.onTapDown(d);
     } else if (exitButton.toRect().contains(d.globalPosition)) {
       exitButton.onTapDown(d);
+    } else if (optionsButton.toRect().contains(d.globalPosition)) {
+      optionsButton.onTapDown(d);
     }
   }
 
@@ -49,9 +53,13 @@ class HomeView {
       startButton.onTapUp(tapUpDetails);
     } else if (exitButton.toRect().contains(tapUpDetails.globalPosition)) {
       exitButton.onTapUp(tapUpDetails);
+    } else if (optionsButton.toRect().contains(tapUpDetails.globalPosition)) {
+      optionsButton.onTapUp(tapUpDetails);
     }
+
     startButton.tapped = false;
     exitButton.tapped = false;
+    optionsButton.tapped = false;
   }
 
   /// TODO : Document
@@ -59,7 +67,8 @@ class HomeView {
     // Background
     // HACK: Wrong background, should not use this one
     //       or at least reference it differently
-    game.gameView.background.render(c, position: Vector2(0, 0), size: game.size);
+    game.gameView.background
+        .render(c, position: Vector2(0, 0), size: game.size);
     // Start
     startButton.position = Vector2(
       game.size.x / 2 - btnWidth / 2,
@@ -67,10 +76,18 @@ class HomeView {
     );
     startButton.size = Vector2(btnWidth, btnWidth / 3);
     startButton.render(c);
+    // Options
+    optionsButton.position = Vector2(
+      game.size.x / 2 - btnWidth / 2,
+      game.size.y / 2 + 0,
+    );
+    optionsButton.size = Vector2(btnWidth, btnWidth / 3);
+    optionsButton.render(c);
+
     // Exit
     exitButton.position = Vector2(
       game.size.x / 2 - btnWidth / 2,
-      game.size.y / 2 + 0,
+      game.size.y / 2 + 100,
     );
     exitButton.size = Vector2(btnWidth, btnWidth / 3);
     exitButton.render(c);
