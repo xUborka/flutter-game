@@ -6,21 +6,19 @@ import 'package:flame/sprite.dart';
 /// TODO : Document
 class Enemy extends SpriteComponent {
   /// TODO : Document
-  Vector2 screenSize;
-
-  /// TODO : Document
   double speed;
 
   /// TODO : Document
-  Enemy({Image enemyImage, this.screenSize, Vector2 startPos})
+  Enemy({Image enemyImage, Vector2 startPos})
       : super.fromSprite(Vector2(50.0, 50.0), Sprite(enemyImage)) {
     position = startPos;
-    speed = 2;
+    speed = 1.5;
   }
 
   @override
   void render(Canvas c) {
     c.save();
+    // HACK : Look into why this is needed
     sprite.render(c, position: position, size: size);
     super.render(c);
     c.restore();

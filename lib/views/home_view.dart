@@ -57,7 +57,9 @@ class HomeView {
   /// TODO : Document
   void render(Canvas c) {
     // Background
-    game.background.render(c, position: Vector2(0, 0), size: game.size);
+    // HACK: Wrong background, should not use this one
+    //       or at least reference it differently
+    game.gameView.background.render(c, position: Vector2(0, 0), size: game.size);
     // Start
     startButton.position = Vector2(
       game.size.x / 2 - btnWidth / 2,
@@ -75,6 +77,7 @@ class HomeView {
   }
 
   /// TODO : Document
-  /// TODO : Is this needed?
-  void update(double t) {}
+  void update(double t) {
+    // Do Nothing
+  }
 }

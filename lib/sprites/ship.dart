@@ -10,26 +10,30 @@ class Ship extends SpriteComponent {
   SpaceGame game;
 
   /// TODO : Document
-  Vector2 screenSize;
-
-  /// TODO : Document
   double speed;
 
   /// TODO : Document
-  Ship({this.game, Image shipImage, this.screenSize, this.speed})
+  Ship({this.game, Image shipImage, this.speed})
       : super.fromSprite(Vector2.all(50.0), Sprite(shipImage)) {
     position = Vector2(
-      screenSize.x / 2 - size.x / 2,
-      screenSize.y - size.y,
+      game.size.x / 2 - size.x / 2,
+      game.size.y - size.y,
     );
   }
 
   @override
   void render(Canvas c) {
     c.save();
+    // HACK : Look into why this is needed
     sprite.render(c, position: position, size: size);
     super.render(c);
     c.restore();
+  }
+
+  @override
+  void update(double dt){
+    // Unnecessary override!
+    super.update(dt);
   }
 
   /// TODO : Document

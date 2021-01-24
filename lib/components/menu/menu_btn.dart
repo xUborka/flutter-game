@@ -26,6 +26,7 @@ class MenuButton extends PositionComponent {
   @override
   void render(Canvas c) {
     c.save();
+    // HACK : Look into why this is needed
     img.render(c, position: position, size: size);
     super.render(c);
     c.restore();
