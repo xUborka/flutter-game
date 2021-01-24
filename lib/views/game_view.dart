@@ -27,6 +27,9 @@ class GameView {
   int score = 0;
 
   /// TODO : Document
+  int time = 0;
+
+  /// TODO : Document
   int ctr = 0;
 
   /// TODO : Document
@@ -75,6 +78,8 @@ class GameView {
   /// TODO : Document
   void update(double t) {
     ctr += 1;
+    //random time incrementation
+    time += 1;
     final List<int> todelProjectiles = <int>[];
     final List<int> todelEnemies = <int>[];
     for (int i = 0; i < projectiles.length; i++) {

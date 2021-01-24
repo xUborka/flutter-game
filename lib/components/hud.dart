@@ -19,6 +19,8 @@ class Hud {
     c.save();
     // HACK : Look into why this is needed
     ingameTextConfig.render(c, 'Score : ${game.gameView.score}', Vector2(0, 0));
+    ingameTextConfig.render(
+        c, 'Time : ${game.gameView.time}', Vector2(game.size.x - 150, 0));
     c.restore();
   }
 }
