@@ -4,11 +4,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flame/components/mixins/tapable.dart';
 import 'package:flutter_game/components/menu/menu_btn.dart';
 import 'package:flutter_game/game.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_game/generated/locale_keys.g.dart';
 
 /// TODO : Document
 class ExitButton extends MenuButton with Tapable {
   /// TODO : Document
-  ExitButton(SpaceGame game, Sprite img) : super(game, img);
+  ExitButton(SpaceGame game, Sprite img)
+      : super(game, img, LocaleKeys.exit.tr());
 
   @override
   bool onTapDown(TapDownDetails d) {

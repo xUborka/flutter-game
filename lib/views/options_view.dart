@@ -22,7 +22,7 @@ class OptionsView {
 
     backButton = BackButton(
       game,
-      Sprite(game.images.fromCache('Menu/Back_BTN.png')),
+      Sprite(game.images.fromCache('Menu/Empty_BTN.png')),
     );
   }
 

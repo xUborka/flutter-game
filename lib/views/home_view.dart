@@ -29,11 +29,11 @@ class HomeView {
   HomeView(this.game) {
     btnWidth = game.size.x * 0.65;
     startButton =
-        StartButton(game, Sprite(game.images.fromCache('Menu/Start_BTN.png')));
+        StartButton(game, Sprite(game.images.fromCache('Menu/Empty_BTN.png')));
     exitButton =
-        ExitButton(game, Sprite(game.images.fromCache('Menu/Exit_BTN.png')));
+        ExitButton(game, Sprite(game.images.fromCache('Menu/Empty_BTN.png')));
     optionsButton = OptionsButton(
-        game, Sprite(game.images.fromCache('Menu/Options_BTN.png')));
+        game, Sprite(game.images.fromCache('Menu/Empty_BTN.png')));
   }
 
   /// TODO : Document

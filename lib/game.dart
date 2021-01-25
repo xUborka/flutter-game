@@ -38,10 +38,7 @@ class SpaceGame extends Game with TapDetector {
         'Enemies/pink_enemy.png',
         'Enemies/yellow_enemy.png',
         'Menu/BG.png',
-        'Menu/Start_BTN.png',
-        'Menu/Exit_BTN.png',
-        'Menu/Options_BTN.png',
-        'Menu/Back_BTN.png'
+        'Menu/Empty_BTN.png'
       ],
       (String image) async {
         await images.load(image);
