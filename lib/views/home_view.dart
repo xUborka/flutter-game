@@ -28,12 +28,9 @@ class HomeView {
   /// TODO : Document
   HomeView(this.game) {
     btnWidth = game.size.x * 0.65;
-    startButton =
-        StartButton(game, Sprite(game.images.fromCache('Menu/Empty_BTN.png')));
-    exitButton =
-        ExitButton(game, Sprite(game.images.fromCache('Menu/Empty_BTN.png')));
-    optionsButton = OptionsButton(
-        game, Sprite(game.images.fromCache('Menu/Empty_BTN.png')));
+    startButton = StartButton(game, Sprite(game.images.fromCache('Menu/Empty_BTN.png')));
+    exitButton = ExitButton(game, Sprite(game.images.fromCache('Menu/Empty_BTN.png')));
+    optionsButton = OptionsButton(game, Sprite(game.images.fromCache('Menu/Empty_BTN.png')));
   }
 
   /// TODO : Document
@@ -67,8 +64,7 @@ class HomeView {
     // Background
     // HACK: Wrong background, should not use this one
     //       or at least reference it differently
-    game.gameView.background
-        .render(c, position: Vector2(0, 0), size: game.size);
+    game.gameView.background.render(c, position: Vector2(0, 0), size: game.size);
     // Start
     startButton.position = Vector2(
       game.size.x / 2 - btnWidth / 2,
