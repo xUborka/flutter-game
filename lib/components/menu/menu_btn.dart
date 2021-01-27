@@ -1,3 +1,4 @@
+import 'package:flame/anchor.dart';
 import 'package:flame/components/position_component.dart';
 import 'package:flame/extensions/canvas.dart';
 import 'package:flame/extensions/vector2.dart';
@@ -21,7 +22,7 @@ class MenuButton extends PositionComponent {
   String text;
 
   /// TODO : Document
-  TextConfig ingameTextConfig = TextConfig(color: Colors.white, fontSize: 64.0);
+  TextConfig ingameTextConfig = TextConfig(color: Colors.white, fontSize: 36.0, fontFamily: 'Ethnocentric');
 
   /// TODO : Document
   MenuButton(this.game, this.img, this.text) {
@@ -35,11 +36,9 @@ class MenuButton extends PositionComponent {
     c.save();
     // HACK : Look into why this is needed
     img.render(c, position: position, size: size);
-
-    // TODO : align center
-    position.x += 20;
-    position.y += 10;
-    ingameTextConfig.render(c, text, position);
+    // TODO : -3 is needed because of the shadow below the image. Find a nicer way.
+    final Vector2 midPos = Vector2(position.x+size.x/2,position.y+size.y/2-3);
+    ingameTextConfig.render(c, text, midPos, anchor: Anchor.center);
     super.render(c);
     c.restore();
   }

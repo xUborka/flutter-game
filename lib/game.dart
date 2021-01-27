@@ -32,6 +32,10 @@ class SpaceGame extends Game with TapDetector {
       <String>[
         'ship_test.png',
         'laserRed01.png',
+        'HealthBar/background.png',
+        'HealthBar/border.png',
+        'HealthBar/heart.png',
+        'HealthBar/half.png',
         'Enemies/black_enemy.png',
         'Enemies/blue_enemy.png',
         'Enemies/orange_enemy.png',

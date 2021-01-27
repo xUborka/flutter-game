@@ -41,7 +41,11 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
+  fonts:
+    - family: Ethnocentric
+      fonts:
+        - asset: fonts/ethnocentric_rg.ttf
+       
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -51,6 +55,10 @@ flutter:
   assets:
     - assets/images/ship_test.png
     - assets/images/laserRed01.png
+    - assets/images/HealthBar/background.png
+    - assets/images/HealthBar/border.png
+    - assets/images/HealthBar/heart.png
+    - assets/images/HealthBar/half.png
     - assets/images/Enemies/yellow_enemy.png
     - assets/images/Enemies/black_enemy.png
     - assets/images/Enemies/blue_enemy.png
