@@ -20,7 +20,7 @@ class TitleView extends StatelessWidget {
             children: [
               Button(
                 label: LocaleKeys.start,
-                onPressed: () => Navigator.of(context).pushNamed('/game'), 
+                onPressed: () => Navigator.of(context).pushNamed('/game'),
               ),
               SizedBox(height: 20),
               Button(
