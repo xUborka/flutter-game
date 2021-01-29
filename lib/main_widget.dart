@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_game/views/game_view.dart';
 import 'package:flutter_game/views/options_view.dart';
@@ -41,7 +42,7 @@ class _MainWidgetState extends State<MainWidget> with WidgetsBindingObserver {
         '/game': (ctx) => GameView(),
         '/options': (ctx) => OptionsView(),
       },
-      initialRoute: '/splash',
+      initialRoute: kReleaseMode ? '/splash' : '/title',
     );
   }
 }

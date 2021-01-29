@@ -22,9 +22,9 @@
 //   @override
 //   bool onTapUp(TapUpDetails d) {
 //     if (tapped) {
-//       Future.delayed(const Duration(milliseconds: 100), () {
-//         SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-//       });
+      // Future.delayed(const Duration(milliseconds: 100), () {
+      //   SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+      // });
 //     }
 //     return true;
 //   }

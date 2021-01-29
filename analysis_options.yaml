@@ -34,3 +34,7 @@ linter:
   
     # Back to the 80s
     lines_longer_than_80_chars: false
+
+    # Custom
+    prefer_const_constructors: false
+    prefer_const_constructors_in_immutables: false
