@@ -20,6 +20,7 @@ class OptionsView extends StatelessWidget {
               Button(
                 label: LocaleKeys.back,
                 onPressed: () => Navigator.of(context).pop(),
+                // TODO Default Navigator animation is ugly as hell 
               ),
             ],
           ),
