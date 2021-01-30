@@ -119,7 +119,7 @@ class _ButtonState extends State<Button2> {
 }
 
 class _ButtonPainer extends CustomPainter {
-  Sprite _sprite;
+  final Sprite _sprite;
 
   _ButtonPainer(this._sprite);
 

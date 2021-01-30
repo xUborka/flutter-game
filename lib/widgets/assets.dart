@@ -7,7 +7,7 @@ class WidgetsAssets {
 
   static Future<void> load() async {
     await Flame.images.loadAll(['buttons.png']);
-    _buttons = SpriteSheet(imageName: 'buttons.png', textureHeight: 20, textureWidth: 60, columns: 2, rows: 8);
+    _buttons = SpriteSheet(imageName: 'buttons.png', textureHeight: 20, textureWidth: 60, columns: 2, rows: 2);
   }
 }
 
