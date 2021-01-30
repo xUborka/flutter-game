@@ -30,6 +30,11 @@ class TitleView extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Button(
+                label: LocaleKeys.credits.tr(),
+                onPressed: () => Navigator.of(context).pushNamed('/credits'),
+              ),
+              SizedBox(height: 20),
+              Button(
                 label: LocaleKeys.exit.tr(),
                 onPressed: () => Future.delayed(const Duration(milliseconds: 50), () => SystemChannels.platform.invokeMethod('SystemNavigator.pop')),
               )

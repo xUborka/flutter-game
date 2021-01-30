@@ -10,5 +10,7 @@ abstract class  LocaleKeys {
   static const sound = 'sound';
   static const on = 'on';
   static const off = 'off';
+  static const credits = 'credits';
+  static const ok = 'ok';
 
 }

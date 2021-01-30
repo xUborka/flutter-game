@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_game/screens/credits_screen.dart';
 import 'package:flutter_game/views/game_view.dart';
 import 'package:flutter_game/views/options_view.dart';
 import 'package:flutter_game/views/title_view.dart';
@@ -30,17 +31,18 @@ class _MainWidgetState extends State<MainWidget> with WidgetsBindingObserver {
     return MaterialApp(
       routes: {
         '/splash': (ctx) => FlameSplashScreen(
-            theme: FlameSplashTheme.dark,
-            showBefore: (BuildContext context) {
-              return Image.asset('assets/images/flame_splash.gif');
-            },
-            onFinish: (BuildContext context) {
-              Navigator.pushNamed(context, '/title');
-            },
-          ),
+              theme: FlameSplashTheme.dark,
+              showBefore: (BuildContext context) {
+                return Image.asset('assets/images/flame_splash.gif');
+              },
+              onFinish: (BuildContext context) {
+                Navigator.pushNamed(context, '/title');
+              },
+            ),
         '/title': (ctx) => TitleView(),
         '/game': (ctx) => GameView(),
         '/options': (ctx) => OptionsView(),
+        '/credits': (ctx) => CreditsScreen(),
       },
       initialRoute: kReleaseMode ? '/splash' : '/title',
     );
