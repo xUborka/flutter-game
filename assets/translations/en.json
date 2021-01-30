@@ -2,5 +2,10 @@
     "start": "Start",
     "options": "Options",
     "exit": "Exit",
-    "back": "Back"
+    "back": "Back",
+    "settings": "Settings",
+    "music": "Music",
+    "sound": "Sound",
+    "on": "On",
+    "off": "Off"
 }

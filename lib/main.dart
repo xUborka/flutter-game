@@ -3,15 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_game/assets.dart';
+import 'package:flutter_game/audio_manager.dart';
+import 'package:flutter_game/settings_manager.dart';
 import 'package:flutter_game/main_widget.dart';
+import 'package:flutter_game/widgets/assets.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.util.fullScreen();
   await Flame.util.setPortraitUpOnly();
+
   final futures = Future.wait([
-    Assets.load()
+    Assets.load(),
+    WidgetsAssets.load(),
+    AudioManager.load(),
+    SettingsManager.load(),
   ]);
+
   if (!kReleaseMode) {
     await futures;
   }

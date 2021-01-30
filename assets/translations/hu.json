@@ -1,6 +1,11 @@
 {
     "start": "Start",
-    "options": "Beáll",
+    "options": "Beállítások",
     "exit": "Kilépés",
-    "back": "Vissza"
+    "back": "Vissza",
+    "settings": "Beállítások",
+    "music": "Zene",
+    "sound": "Hangok",
+    "on": "Be",
+    "off": "Ki"
 }
