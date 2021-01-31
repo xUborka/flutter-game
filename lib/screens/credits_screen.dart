@@ -13,10 +13,7 @@ class CreditsScreen extends StatelessWidget {
         child: Center(
       child: Column(children: [
         SizedBox(height: 40),
-        Label(
-            label: LocaleKeys.credits.tr(),
-            fontSize: 60,
-            fontColor: Color(0xFFe3e3e3)),
+        Label(label: LocaleKeys.credits.tr(), fontSize: 60, fontColor: Color(0xFFe3e3e3)),
         Expanded(
           child: Container(
             margin: EdgeInsets.all(30),
@@ -44,7 +41,7 @@ class CreditsScreen extends StatelessWidget {
         Button(
           buttonType: ButtonType.PRIMARY,
           label: LocaleKeys.ok.tr(),
-          onPressed: () => Navigator.of(ctx).pushNamed('/title'),
+          onPressed: () => Navigator.of(ctx).pop(),
         ),
         SizedBox(height: 20),
       ]),

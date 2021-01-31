@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './audio_manager.dart';
 
@@ -5,6 +8,7 @@ class SettingsManager {
   static bool isFirstAccess;
   static bool _isMusicEnabled;
   static bool isSfxEnabled;
+  static String currentLocaleCode;
 
   static set isMusicEnabled(bool value) {
     _isMusicEnabled = value;
@@ -30,6 +34,7 @@ class SettingsManager {
     await prefs.setBool("SettingsManager.isFirstAccess", isFirstAccess);
     await prefs.setBool("SettingsManager.isMusicEnabled", isMusicEnabled);
     await prefs.setBool("SettingsManager.isSfxEnabled", isSfxEnabled);
+    await prefs.setString("SettingsManager.currentLocale", currentLocaleCode);
   }
 
   static Future<void> load() async {
@@ -38,5 +43,6 @@ class SettingsManager {
     isFirstAccess = prefs.getBool("SettingsManager.isFirstAccess") ?? true;
     isMusicEnabled = prefs.getBool("SettingsManager.isMusicEnabled") ?? true;
     isSfxEnabled = prefs.getBool("SettingsManager.isSfxEnabled") ?? true;
+    currentLocaleCode = prefs.getString("SettingsManager.currentLocale") ?? 'en';
   }
 }

@@ -6,6 +6,9 @@ import 'package:flutter_game/screens/options_screen.dart';
 import 'package:flutter_game/screens/title_screen.dart';
 import 'package:flame_splash_screen/flame_splash_screen.dart';
 
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_game/settings_manager.dart';
+
 class MainWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -45,6 +48,9 @@ class _MainWidgetState extends State<MainWidget> with WidgetsBindingObserver {
         '/credits': (ctx) => CreditsScreen(),
       },
       initialRoute: kReleaseMode ? '/splash' : '/title',
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: Locale(SettingsManager.currentLocaleCode),
     );
   }
 }

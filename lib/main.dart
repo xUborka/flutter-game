@@ -7,6 +7,7 @@ import 'package:flutter_game/game/game_assets.dart';
 import 'package:flutter_game/settings_manager.dart';
 import 'package:flutter_game/main_widget.dart';
 import 'package:flutter_game/widgets/assets.dart';
+import 'package:flutter_game/localization_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,13 +25,9 @@ void main() async {
     await futures;
   }
   runApp(EasyLocalization(
-    supportedLocales: getSupportedLocales(),
+    supportedLocales: LocalizationManager.getSupportedLocales(),
     path: 'assets/translations',
-    fallbackLocale: getDefaultLocale(),
+    fallbackLocale: LocalizationManager.getDefaultLocale(),
     child: MainWidget(),
   ));
 }
-
-// TODO Move to a global config file
-List<Locale> getSupportedLocales() => [const Locale('en'), const Locale('hu')];
-Locale getDefaultLocale() => const Locale('en', 'US');

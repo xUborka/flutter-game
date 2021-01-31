@@ -6,6 +6,7 @@ import '../settings_manager.dart';
 import '../widgets/button.dart';
 import '../widgets/label.dart';
 import '../widgets/pattern_container.dart';
+import '../extensions.dart';
 
 class OptionsScreen extends StatefulWidget {
   @override
@@ -99,6 +100,51 @@ class _OptionsScreenState extends State<OptionsScreen> {
                         ),
                       )
                     ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            SizedBox(height: 20),
+                            Button(
+                              buttonType: context.locale.isCurrentLocaleEng() ? ButtonType.SECONDARY : ButtonType.PRIMARY,
+                              label: 'ENG',
+                              width: 70,
+                              onPressed: () {
+                                setState(() {
+                                  context.locale = Locale('en');
+                                });
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: Container(
+                          margin: EdgeInsets.only(left: 15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 20),
+                              Button(
+                                buttonType: !context.locale.isCurrentLocaleEng() ? ButtonType.SECONDARY : ButtonType.PRIMARY,
+                                label: 'HUN',
+                                width: 70,
+                                onPressed: () {
+                                  setState(() {
+                                    context.locale = Locale('hu');
+                                  });
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),
@@ -107,7 +153,7 @@ class _OptionsScreenState extends State<OptionsScreen> {
               buttonType: ButtonType.PRIMARY,
               label: LocaleKeys.back.tr(),
               onPressed: () {
-                Navigator.of(ctx).pushNamed('/title');
+                Navigator.of(ctx).pop();
               },
             ),
             SizedBox(height: 20),
