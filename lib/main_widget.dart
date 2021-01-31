@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_game/managers/settings_manager.dart';
 import 'package:flutter_game/screens/credits_screen.dart';
 import 'package:flutter_game/screens/game_screen.dart';
 import 'package:flutter_game/screens/options_screen.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_game/screens/title_screen.dart';
 import 'package:flame_splash_screen/flame_splash_screen.dart';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_game/settings_manager.dart';
 
 class MainWidget extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'localization_manager.dart';
+import 'package:flutter_game/managers/localization_manager.dart';
 
 extension NumberParsing on Locale {
   bool isCurrentLocaleEng() {

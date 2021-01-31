@@ -1,12 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_game/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 
-import '../settings_manager.dart';
+import '../extensions.dart';
+import '../managers/settings_manager.dart';
 import '../widgets/button.dart';
 import '../widgets/label.dart';
 import '../widgets/pattern_container.dart';
-import '../extensions.dart';
 
 class OptionsScreen extends StatefulWidget {
   @override
