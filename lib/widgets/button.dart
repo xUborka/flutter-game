@@ -6,7 +6,7 @@ import './label.dart';
 
 enum ButtonType { PRIMARY, SECONDARY }
 
-class Button2 extends StatefulWidget {
+class Button extends StatefulWidget {
   final VoidCallback onPressed;
   final VoidCallback onPress;
   final VoidCallback onPressReleased;
@@ -17,7 +17,7 @@ class Button2 extends StatefulWidget {
   final double height;
   final bool disabled;
 
-  Button2({
+  Button({
     this.onPressed,
     this.onPress,
     this.onPressReleased,
@@ -32,7 +32,7 @@ class Button2 extends StatefulWidget {
   State createState() => _ButtonState();
 }
 
-class _ButtonState extends State<Button2> {
+class _ButtonState extends State<Button> {
   bool _pressed = false;
 
   void _press() {
@@ -78,43 +78,44 @@ class _ButtonState extends State<Button2> {
     }
 
     return Opacity(
-        opacity: widget.disabled ? 0.3 : 1,
-        child: GestureDetector(
-          onTapDown: (_) {
-            if (widget.disabled) {
-              return;
-            }
-            _press();
-          },
-          onTapUp: (_) {
-            if (widget.disabled) {
-              return;
-            }
-            _release();
-          },
-          onTapCancel: () {
-            if (widget.disabled) {
-              return;
-            }
-            _release();
-          },
-          child: Container(
-            width: width,
-            height: height,
-            child: CustomPaint(
-              painter: _ButtonPainer(_pressed ? _pressedSprite : _sprite),
-              child: Center(
-                child: widget.label != null
-                    ? Label(
-                        label: widget.label,
-                        fontColor: _labelColor,
-                        fontSize: height * 0.6,
-                      )
-                    : null,
-              ),
+      opacity: widget.disabled ? 0.3 : 1,
+      child: GestureDetector(
+        onTapDown: (_) {
+          if (widget.disabled) {
+            return;
+          }
+          _press();
+        },
+        onTapUp: (_) {
+          if (widget.disabled) {
+            return;
+          }
+          _release();
+        },
+        onTapCancel: () {
+          if (widget.disabled) {
+            return;
+          }
+          _release();
+        },
+        child: Container(
+          width: width,
+          height: height,
+          child: CustomPaint(
+            painter: _ButtonPainer(_pressed ? _pressedSprite : _sprite),
+            child: Center(
+              child: widget.label != null
+                  ? Label(
+                      label: widget.label,
+                      fontColor: _labelColor,
+                      fontSize: height * 0.6,
+                    )
+                  : null,
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 

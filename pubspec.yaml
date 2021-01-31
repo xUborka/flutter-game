@@ -58,17 +58,9 @@ flutter:
     - assets/images/flame_splash.gif
     - assets/images/ship_test.png
     - assets/images/laserRed01.png
-    - assets/images/HealthBar/background.png
-    - assets/images/HealthBar/border.png
-    - assets/images/HealthBar/heart.png
-    - assets/images/HealthBar/half.png
-    - assets/images/Enemies/yellow_enemy.png
-    - assets/images/Enemies/black_enemy.png
-    - assets/images/Enemies/blue_enemy.png
-    - assets/images/Enemies/orange_enemy.png
-    - assets/images/Enemies/pink_enemy.png
+    - assets/images/HealthBar/heart-tileset-01.png
+    - assets/images/Enemies/enemy-tileset-01.png
     - assets/images/Menu/BG.png
-    - assets/images/Menu/Empty_BTN.png
 
     - assets/images/buttons.png
     - assets/images/pattern.png

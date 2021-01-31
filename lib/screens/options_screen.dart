@@ -7,14 +7,14 @@ import '../widgets/button.dart';
 import '../widgets/label.dart';
 import '../widgets/pattern_container.dart';
 
-class OptionsView extends StatefulWidget {
+class OptionsScreen extends StatefulWidget {
   @override
   State createState() {
-    return _OptionsViewState();
+    return _OptionsScreenState();
   }
 }
 
-class _OptionsViewState extends State<OptionsView> {
+class _OptionsScreenState extends State<OptionsScreen> {
   bool _isMusicEnabled;
   bool _isSfxEnabled;
 
@@ -26,7 +26,7 @@ class _OptionsViewState extends State<OptionsView> {
   }
 
   @override
-  Widget build(ctx) {
+  Widget build(BuildContext ctx) {
     return PatternContainer(
       child: Center(
         child: Column(
@@ -69,7 +69,7 @@ class _OptionsViewState extends State<OptionsView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Button2(
+                              Button(
                                 buttonType: _isMusicEnabled ? ButtonType.PRIMARY : ButtonType.SECONDARY,
                                 label: _isMusicEnabled ? LocaleKeys.on.tr() : LocaleKeys.off.tr(),
                                 width: 70,
@@ -82,7 +82,7 @@ class _OptionsViewState extends State<OptionsView> {
                                 },
                               ),
                               SizedBox(height: 5),
-                              Button2(
+                              Button(
                                 buttonType: _isSfxEnabled ? ButtonType.PRIMARY : ButtonType.SECONDARY,
                                 label: _isSfxEnabled ? LocaleKeys.on.tr() : LocaleKeys.off.tr(),
                                 width: 70,
@@ -103,7 +103,7 @@ class _OptionsViewState extends State<OptionsView> {
                 ],
               ),
             ),
-            Button2(
+            Button(
               buttonType: ButtonType.PRIMARY,
               label: LocaleKeys.back.tr(),
               onPressed: () {

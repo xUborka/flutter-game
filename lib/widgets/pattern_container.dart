@@ -6,7 +6,7 @@ class PatternContainer extends StatelessWidget {
   PatternContainer({this.child});
 
   @override
-  Widget build(ctx) {
+  Widget build(BuildContext ctx) {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(

@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_game/screens/credits_screen.dart';
-import 'package:flutter_game/views/game_view.dart';
-import 'package:flutter_game/views/options_view.dart';
-import 'package:flutter_game/views/title_view.dart';
+import 'package:flutter_game/screens/game_screen.dart';
+import 'package:flutter_game/screens/options_screen.dart';
+import 'package:flutter_game/screens/title_screen.dart';
 import 'package:flame_splash_screen/flame_splash_screen.dart';
 
 class MainWidget extends StatefulWidget {
@@ -39,9 +39,9 @@ class _MainWidgetState extends State<MainWidget> with WidgetsBindingObserver {
                 Navigator.pushNamed(context, '/title');
               },
             ),
-        '/title': (ctx) => TitleView(),
-        '/game': (ctx) => GameView(),
-        '/options': (ctx) => OptionsView(),
+        '/title': (ctx) => TitleScreen(),
+        '/game': (ctx) => GameScreen(),
+        '/options': (ctx) => OptionsScreen(),
         '/credits': (ctx) => CreditsScreen(),
       },
       initialRoute: kReleaseMode ? '/splash' : '/title',

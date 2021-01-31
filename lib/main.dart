@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_game/assets.dart';
 import 'package:flutter_game/audio_manager.dart';
+import 'package:flutter_game/game/game_assets.dart';
 import 'package:flutter_game/settings_manager.dart';
 import 'package:flutter_game/main_widget.dart';
 import 'package:flutter_game/widgets/assets.dart';
@@ -14,7 +14,7 @@ void main() async {
   await Flame.util.setPortraitUpOnly();
 
   final futures = Future.wait([
-    Assets.load(),
+    GameAssets.load(),
     WidgetsAssets.load(),
     AudioManager.load(),
     SettingsManager.load(),
