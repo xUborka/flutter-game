@@ -6,12 +6,16 @@ class GameAssets {
   static SpriteSheet _hearts;
   static SpriteSheet _enemies;
   static Sprite _background;
+  static Sprite _ship;
+  static Sprite _projectile;
 
   static Future<void> load() async {
     await Flame.images.loadAll([
       'HealthBar/heart-tileset-01.png',
       'Enemies/enemy-tileset-01.png',
-      'Menu/BG.png'
+      'Menu/BG.png',
+      'ship_test.png',
+      'laserRed01.png'
     ]);
     _hearts = SpriteSheet(
         imageName: 'HealthBar/heart-tileset-01.png',
@@ -26,6 +30,8 @@ class GameAssets {
         columns: 2,
         rows: 3);
     _background = Sprite('Menu/BG.png');
+    _ship = Sprite('ship_test.png');
+    _projectile = Sprite('laserRed01.png');
   }
 }
 
@@ -51,4 +57,6 @@ class HeartSprites {
 
 class MiscSprites {
   static Sprite background() => GameAssets._background;
+  static Sprite ship() => GameAssets._ship;
+  static Sprite projectile() => GameAssets._projectile;
 }

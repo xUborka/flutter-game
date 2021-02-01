@@ -15,12 +15,6 @@ class Enemy extends SpriteComponent {
     c.restore();
   }
 
-  @override
-  void update(double dt) {
-    // Unnecessary override!
-    super.update(dt);
-  }
-
   void move() {
     y += speed;
   }
