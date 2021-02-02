@@ -5,17 +5,23 @@ import './settings_manager.dart';
 class AudioManager {
   static OcarinaPlayer _lastPlayer;
 
-  static final OcarinaPlayer _title = OcarinaPlayer(asset: 'assets/audio/title.wav', loop: true);
+  static final OcarinaPlayer _title =
+      OcarinaPlayer(asset: 'assets/audio/title.wav', loop: true);
 
-  static final OcarinaPlayer _gameover = OcarinaPlayer(asset: 'assets/audio/title.aac', loop: false);
+  static final OcarinaPlayer _gameover =
+      OcarinaPlayer(asset: 'assets/audio/title.wav', loop: false);
 
-  static final OcarinaPlayer _gameplay = OcarinaPlayer(asset: 'assets/audio/title.wav', loop: true);
+  static final OcarinaPlayer _gameplay =
+      OcarinaPlayer(asset: 'assets/audio/title.wav', loop: true);
 
-  static final OcarinaPlayer _win = OcarinaPlayer(asset: 'assets/audio/title.aac', loop: false);
+  static final OcarinaPlayer _win =
+      OcarinaPlayer(asset: 'assets/audio/title.wav', loop: false);
 
-  static final OcarinaPlayer _blast = OcarinaPlayer(asset: 'assets/audio/blast.wav', loop: false);
+  static final OcarinaPlayer _blast =
+      OcarinaPlayer(asset: 'assets/audio/blast.wav', loop: false);
 
-  static final OcarinaPlayer _blast2 = OcarinaPlayer(asset: 'assets/audio/blast2.wav', loop: false);
+  static final OcarinaPlayer _blast2 =
+      OcarinaPlayer(asset: 'assets/audio/blast2.wav', loop: false);
 
   static Future<void> load() async {
     await Future.wait([
