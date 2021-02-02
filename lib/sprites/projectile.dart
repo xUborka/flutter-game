@@ -10,7 +10,7 @@ class Projectile extends SpriteComponent {
 
   /// TODO : Document
   Projectile(Sprite sp, Position pos) : super.fromSprite(8, 48, sp) {
-    speed = 8;
+    speed = 500;
     x = pos.x;
     y = pos.y;
   }
@@ -22,8 +22,8 @@ class Projectile extends SpriteComponent {
     c.restore();
   }
 
-  /// TODO : Document
-  void move() {
-    y -= speed;
+  @override
+  void update(double dt){
+    y -= speed*dt;
   }
 }

@@ -20,8 +20,6 @@ class SpaceGame extends BaseGame with TapDetector {
   int ctr = 0;
   List<Projectile> projectiles = <Projectile>[];
   List<Enemy> enemies = <Enemy>[];
-  bool isLeft = false;
-  bool isTouching = false;
 
   SpaceGame() {
     background = MiscSprites.background();
@@ -52,7 +50,7 @@ class SpaceGame extends BaseGame with TapDetector {
     // Full hack, refactor
     ctr += 1;
     final List<int> todelEnemies = <int>[];
-    enemies.forEach((Enemy enemy) => enemy.move());
+    enemies.forEach((Enemy enemy) => enemy.update(t));
     for (int i = 0; i < enemies.length; i++) {
       if (enemies[i].y > size.height) {
         todelEnemies.add(i);
@@ -64,7 +62,7 @@ class SpaceGame extends BaseGame with TapDetector {
     }
     final List<int> todelProjectiles = <int>[];
     for (int i = 0; i < projectiles.length; i++) {
-      projectiles[i].move();
+      projectiles[i].update(t);
       if (projectiles[i].y <= -54) {
         todelProjectiles.add(i);
       }
@@ -85,9 +83,7 @@ class SpaceGame extends BaseGame with TapDetector {
       enemies.add(tEnemy);
       ctr = 0;
     }
-    if (isTouching) {
-      ship.move(toLeft: isLeft);
-    }
+    ship.update(t);
 
     // Test projectile impact
     bamm();
@@ -123,14 +119,16 @@ class SpaceGame extends BaseGame with TapDetector {
 
   @override
   void onTapDown(TapDownDetails details) {
-    isTouching = true;
-    final double screenCenterX = size.width / 2.0;
-    isLeft = details.globalPosition.dx < screenCenterX;
+    if (details.globalPosition.dx < size.width / 2.0) {
+      ship.movementDirection = Direction.left;
+    } else {
+      ship.movementDirection = Direction.right;
+    }
   }
 
   @override
   void onTapUp(TapUpDetails details) {
-    isTouching = false;
+    ship.movementDirection = Direction.none;
   }
 
   // @override

@@ -4,12 +4,21 @@ import 'package:flame/sprite.dart';
 import 'package:flame/components/component.dart';
 import 'package:flutter_game/game/game.dart';
 
+enum Direction{
+  left,
+  right,
+  none
+}
+
 class Ship extends SpriteComponent with HasGameRef<SpaceGame> {
   double speed;
-
+  Direction dir;
   Ship(Sprite sp) : super.fromSprite(50, 50, sp) {
-    speed = 3;
+    speed = 180;
   }
+
+  set movementDirection(Direction direction) => dir = direction;
+  Direction get movementDirection => dir;
 
   @override
   void render(Canvas c) {
@@ -23,16 +32,26 @@ class Ship extends SpriteComponent with HasGameRef<SpaceGame> {
     c.restore();
   }
 
-  /// TODO : Refactor bool param to 2 functions
-  void move({bool toLeft}) {
-    x += (toLeft ? -1 : 1) * speed;
+  @override
+  void update(double dt){
+    switch(dir){
+      case Direction.left: 
+        x -= speed * dt;
+        break;
+      case Direction.right:
+        x += speed * dt;
+        break;
+      default:
+        break;
+    }
     if (x < 0) {
       x = 0;
     }
-    final double maxPos = gameRef.size.width - 50;
+    final double maxPos = gameRef.size.width - width;
 
     if (x > maxPos) {
       x = maxPos;
     }
+    super.update(dt);
   }
 }
