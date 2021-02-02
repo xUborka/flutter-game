@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 
 // TODO Separate file
 class SineCurve extends Curve {
-  final double count;
+  final double freq;
   final double scale;
 
-  SineCurve({this.count = 1, this.scale = 1});
+  SineCurve({this.freq = 1, this.scale = 1});
 
   @override
   double transformInternal(double t) {
-    return sin(count * 2 * pi * t) * scale;
+    return sin(freq * 2 * pi * t) * scale;
   }
 }
 

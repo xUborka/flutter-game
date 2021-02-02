@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flame/components/mixins/has_game_ref.dart';
 import 'package:flame/sprite.dart';
@@ -36,21 +37,13 @@ class Ship extends SpriteComponent with HasGameRef<SpaceGame> {
   void update(double dt){
     switch(dir){
       case Direction.left: 
-        x -= speed * dt;
+        x = max(x - speed * dt, 0);
         break;
       case Direction.right:
-        x += speed * dt;
+        x = min(x + speed * dt, gameRef.size.width - width);
         break;
       default:
         break;
-    }
-    if (x < 0) {
-      x = 0;
-    }
-    final double maxPos = gameRef.size.width - width;
-
-    if (x > maxPos) {
-      x = maxPos;
     }
     super.update(dt);
   }
