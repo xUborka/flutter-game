@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_game/managers/settings_manager.dart';
 import 'package:flutter_game/screens/credits_screen.dart';
 import 'package:flutter_game/screens/game_screen.dart';
+import 'package:flutter_game/screens/home_screen.dart';
 import 'package:flutter_game/screens/options_screen.dart';
 import 'package:flutter_game/screens/title_screen.dart';
 import 'package:flame_splash_screen/flame_splash_screen.dart';
@@ -39,15 +40,16 @@ class _MainWidgetState extends State<MainWidget> with WidgetsBindingObserver {
                 return Image.asset('assets/images/flame_splash.gif');
               },
               onFinish: (BuildContext context) {
-                Navigator.pushNamed(context, '/title');
+                Navigator.pushNamed(context, '/home');
               },
             ),
+        '/home': (ctx) => HomeScreen(),
         '/title': (ctx) => TitleScreen(),
         '/game': (ctx) => GameScreen(),
         '/options': (ctx) => OptionsScreen(),
         '/credits': (ctx) => CreditsScreen(),
       },
-      initialRoute: kReleaseMode ? '/splash' : '/title',
+      initialRoute: kReleaseMode ? '/splash' : '/home',
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: Locale(SettingsManager.currentLocaleCode),
