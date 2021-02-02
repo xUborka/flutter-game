@@ -66,6 +66,7 @@ flutter:
     - assets/images/pattern.png
 
     - assets/audio/blast.wav
+    - assets/audio/blast2.wav
     - assets/audio/title.wav
 
     - assets/translations/

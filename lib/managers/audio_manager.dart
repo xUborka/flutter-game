@@ -15,6 +15,8 @@ class AudioManager {
 
   static final OcarinaPlayer _blast = OcarinaPlayer(asset: 'assets/audio/blast.wav', loop: false);
 
+  static final OcarinaPlayer _blast2 = OcarinaPlayer(asset: 'assets/audio/blast2.wav', loop: false);
+
   static Future<void> load() async {
     await Future.wait([
       _title.load(),
@@ -22,6 +24,7 @@ class AudioManager {
       _gameplay.load(),
       _win.load(),
       _blast.load(),
+      _blast2.load(),
     ]);
   }
 
@@ -31,6 +34,7 @@ class AudioManager {
   static Future<void> winMusic() => _music(_win);
 
   static Future<void> blastSfx() => _sfx(_blast);
+  static Future<void> blast2Sfx() => _sfx(_blast2);
 
   static Future<void> _sfx(OcarinaPlayer player) async {
     if (!SettingsManager.isSfxEnabled) return;
