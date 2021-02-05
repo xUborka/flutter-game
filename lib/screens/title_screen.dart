@@ -12,8 +12,9 @@ class TitleScreen extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/Menu/BG.png'),
-              fit: BoxFit.cover,
+              // image: AssetImage('assets/images/Menu/BG.png'),
+              image: AssetImage('assets/images/test_bg.png'),
+              fit: BoxFit.fill,
             ),
           ),
           child: Column(

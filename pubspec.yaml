@@ -64,6 +64,7 @@ flutter:
     - assets/images/HealthBar/heart-tileset-01.png
     - assets/images/Enemies/enemy-tileset-01.png
     - assets/images/Menu/BG.png
+    - assets/images/test_bg.png
 
     - assets/images/buttons.png
     - assets/images/test_buttons.png
