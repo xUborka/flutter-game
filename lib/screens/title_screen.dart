@@ -20,6 +20,19 @@ class TitleScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(
+                width: 400,
+                height: 200,
+                child: Container(
+                    decoration: BoxDecoration(
+                  image: DecorationImage(
+                    // image: AssetImage('assets/images/Menu/BG.png'),
+                    image: AssetImage('assets/images/test_banner.png'),
+                    fit: BoxFit.fill,
+                  ),
+                )),
+              ),
+              SizedBox(height: 20),
               Button(
                 buttonType: ButtonType.SPECIAL,
                 label: LocaleKeys.start.tr(),
