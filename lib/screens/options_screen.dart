@@ -73,7 +73,7 @@ class _OptionsScreenState extends State<OptionsScreen> {
                               Button(
                                 buttonType: _isMusicEnabled ? ButtonType.PRIMARY : ButtonType.SECONDARY,
                                 label: _isMusicEnabled ? LocaleKeys.on.tr() : LocaleKeys.off.tr(),
-                                width: 70,
+                                width: 120,
                                 onPressed: () {
                                   setState(() {
                                     _isMusicEnabled = !_isMusicEnabled;
@@ -86,7 +86,7 @@ class _OptionsScreenState extends State<OptionsScreen> {
                               Button(
                                 buttonType: _isSfxEnabled ? ButtonType.PRIMARY : ButtonType.SECONDARY,
                                 label: _isSfxEnabled ? LocaleKeys.on.tr() : LocaleKeys.off.tr(),
-                                width: 70,
+                                width: 120,
                                 onPressed: () {
                                   setState(() {
                                     _isSfxEnabled = !_isSfxEnabled;
@@ -112,7 +112,7 @@ class _OptionsScreenState extends State<OptionsScreen> {
                             Button(
                               buttonType: context.locale.isCurrentLocaleEng() ? ButtonType.SECONDARY : ButtonType.PRIMARY,
                               label: 'ENG',
-                              width: 70,
+                              width: 120,
                               onPressed: () {
                                 setState(() {
                                   context.locale = Locale('en');
@@ -133,7 +133,7 @@ class _OptionsScreenState extends State<OptionsScreen> {
                               Button(
                                 buttonType: !context.locale.isCurrentLocaleEng() ? ButtonType.SECONDARY : ButtonType.PRIMARY,
                                 label: 'HUN',
-                                width: 70,
+                                width: 120,
                                 onPressed: () {
                                   setState(() {
                                     context.locale = Locale('hu');

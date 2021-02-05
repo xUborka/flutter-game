@@ -47,6 +47,9 @@ flutter:
     - family: Ethnocentric
       fonts:
         - asset: fonts/ethnocentric_rg.ttf
+    - family: Pixelart
+      fonts:
+        - asset: fonts/pixelart.ttf
        
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -63,6 +66,7 @@ flutter:
     - assets/images/Menu/BG.png
 
     - assets/images/buttons.png
+    - assets/images/test_buttons.png
     - assets/images/pattern.png
 
     - assets/audio/blast.wav

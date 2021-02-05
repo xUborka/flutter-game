@@ -63,14 +63,14 @@ class _ButtonState extends State<Button> {
     switch (widget.buttonType) {
       case ButtonType.PRIMARY:
         {
-          _labelColor = Color(0xFFb13e53);
+          _labelColor = Color.fromRGBO(34,32,52,1);
           _sprite = ButtonSprites.primaryButton();
           _pressedSprite = ButtonSprites.primaryButtonPressed();
           break;
         }
       case ButtonType.SECONDARY:
         {
-          _labelColor = Color(0xFF5d275d);
+          _labelColor = Color.fromRGBO(34,32,52,1);
           _sprite = ButtonSprites.secondaryButton();
           _pressedSprite = ButtonSprites.secondaryButtonPressed();
           break;
@@ -103,14 +103,17 @@ class _ButtonState extends State<Button> {
           height: height,
           child: CustomPaint(
             painter: _ButtonPainer(_pressed ? _pressedSprite : _sprite),
-            child: Center(
-              child: widget.label != null
-                  ? Label(
-                      label: widget.label,
-                      fontColor: _labelColor,
-                      fontSize: height * 0.6,
-                    )
-                  : null,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: _pressed ? 0 : 10),
+              child: Center(
+                child: widget.label != null
+                    ? Label(
+                        label: widget.label,
+                        fontColor: _labelColor,
+                        fontSize: height * 0.6,
+                      )
+                    : null,
+              ),
             ),
           ),
         ),

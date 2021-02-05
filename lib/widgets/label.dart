@@ -16,7 +16,8 @@ class Label extends StatelessWidget {
     return Text(
       label,
       style: TextStyle(
-          color: fontColor, fontFamily: 'VictorPixel', fontSize: fontSize),
+          color: fontColor, fontFamily: 'Pixelart', fontSize: fontSize),
+      textAlign: TextAlign.center,
     );
   }
 }

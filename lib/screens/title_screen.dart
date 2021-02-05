@@ -26,19 +26,19 @@ class TitleScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Button(
-                buttonType: ButtonType.PRIMARY,
+                buttonType: ButtonType.SECONDARY,
                 label: LocaleKeys.options.tr(),
                 onPressed: () => Navigator.of(context).pushNamed('/options'),
               ),
               SizedBox(height: 20),
               Button(
-                buttonType: ButtonType.PRIMARY,
+                buttonType: ButtonType.SECONDARY,
                 label: LocaleKeys.credits.tr(),
                 onPressed: () => Navigator.of(context).pushNamed('/credits'),
               ),
               SizedBox(height: 20),
               Button(
-                buttonType: ButtonType.PRIMARY,
+                buttonType: ButtonType.SECONDARY,
                 label: LocaleKeys.exit.tr(),
                 onPressed: () => Future.delayed(
                   const Duration(milliseconds: 50),

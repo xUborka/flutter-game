@@ -29,8 +29,8 @@ class CreditsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Label(
-                  label: 'Game made by xGurke & Geryllaz',
-                  fontSize: 18,
+                  label: 'Game made by xGurke and Geryllaz',
+                  fontSize: 24,
                   fontColor: Color(0xFF94b0c2),
                 )
               ],
