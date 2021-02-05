@@ -67,6 +67,7 @@ flutter:
 
     - assets/images/buttons.png
     - assets/images/test_buttons.png
+    - assets/images/special-button.png
     - assets/images/pattern.png
 
     - assets/audio/blast.wav

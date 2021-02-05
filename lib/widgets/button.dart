@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import './assets.dart';
 import './label.dart';
 
-enum ButtonType { PRIMARY, SECONDARY }
+enum ButtonType { PRIMARY, SECONDARY, SPECIAL }
 
 class Button extends StatefulWidget {
   final VoidCallback onPressed;
@@ -13,8 +13,8 @@ class Button extends StatefulWidget {
   final String label;
   final ButtonType buttonType;
 
-  final double width;
-  final double height;
+  double width;
+  double height;
   final bool disabled;
 
   Button({
@@ -53,8 +53,8 @@ class _ButtonState extends State<Button> {
 
   @override
   Widget build(_) {
-    final width = widget.width ?? 200;
-    final height = widget.height ?? 50;
+    widget.width = widget.width ?? 200;
+    widget.height = widget.height ?? 50;
 
     Sprite _sprite;
     Sprite _pressedSprite;
@@ -63,16 +63,24 @@ class _ButtonState extends State<Button> {
     switch (widget.buttonType) {
       case ButtonType.PRIMARY:
         {
-          _labelColor = Color.fromRGBO(34,32,52,1);
+          _labelColor = Color.fromRGBO(34, 32, 52, 1);
           _sprite = ButtonSprites.primaryButton();
           _pressedSprite = ButtonSprites.primaryButtonPressed();
           break;
         }
       case ButtonType.SECONDARY:
         {
-          _labelColor = Color.fromRGBO(34,32,52,1);
+          _labelColor = Color.fromRGBO(34, 32, 52, 1);
           _sprite = ButtonSprites.secondaryButton();
           _pressedSprite = ButtonSprites.secondaryButtonPressed();
+          break;
+        }
+      case ButtonType.SPECIAL:
+        {
+          widget.height = 100;
+          _labelColor = Color.fromRGBO(34, 32, 52, 1);
+          _sprite = ButtonSprites.specialButton();
+          _pressedSprite = ButtonSprites.specialButtonPressed();
           break;
         }
     }
@@ -99,8 +107,8 @@ class _ButtonState extends State<Button> {
           _release();
         },
         child: Container(
-          width: width,
-          height: height,
+          width: widget.width,
+          height: widget.height,
           child: CustomPaint(
             painter: _ButtonPainer(_pressed ? _pressedSprite : _sprite),
             child: Padding(
@@ -110,7 +118,7 @@ class _ButtonState extends State<Button> {
                     ? Label(
                         label: widget.label,
                         fontColor: _labelColor,
-                        fontSize: height * 0.6,
+                        fontSize: widget.height * 0.4,
                       )
                     : null,
               ),

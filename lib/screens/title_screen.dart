@@ -20,7 +20,7 @@ class TitleScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Button(
-                buttonType: ButtonType.PRIMARY,
+                buttonType: ButtonType.SPECIAL,
                 label: LocaleKeys.start.tr(),
                 onPressed: () => Navigator.of(context).pushNamed('/game'),
               ),
