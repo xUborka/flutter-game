@@ -71,6 +71,9 @@ flutter:
     - assets/images/test_banner.png
     - assets/images/special-button.png
     - assets/images/pattern.png
+    - assets/images/navbar_left.png
+    - assets/images/navbar_right.png
+    - assets/images/navbar_mid.png
 
     - assets/audio/blast.wav
     - assets/audio/blast2.wav
