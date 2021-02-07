@@ -15,10 +15,7 @@ class PreferencesScreen extends StatelessWidget {
       child: Center(
         child: Column(children: [
           SizedBox(height: 40),
-          Label(
-              label: 'TODO PREFERENCES',
-              fontSize: 40,
-              fontColor: Color(0xFFe3e3e3)),
+          Label(label: 'TODO PREFERENCES', fontSize: 40, fontColor: Color(0xFFe3e3e3)),
         ]),
       ),
     );
