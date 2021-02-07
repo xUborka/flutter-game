@@ -5,7 +5,7 @@ import 'package:flame/components/animation_component.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/mixins/resizable.dart';
 import 'package:flame/sprite.dart';
-import 'package:flutter_game/game/components/player_config.dart';
+import 'package:flutter_game/game/collision/collision_box.dart';
 
 enum PlayerStatus { dead, ducking, jumping, running, waiting, intro, dodging }
 
@@ -59,7 +59,7 @@ class Player extends PositionComponent with Resizable {
     }
 
     status = PlayerStatus.jumping;
-    jumpVelocity = TRexConfig.initialJumpVelocity - (speed / 10);
+    jumpVelocity = PlayerConfig.initialJumpVelocity - (speed / 10);
 
     reachedMinHeight = false;
   }
@@ -83,7 +83,7 @@ class Player extends PositionComponent with Resizable {
   void update(double t) {
     if (status == PlayerStatus.jumping) {
       y += jumpVelocity;
-      jumpVelocity += TRexConfig.gravity;
+      jumpVelocity += PlayerConfig.gravity;
       if (y > groundYPos) {
         reset();
         jumpCount++;
@@ -95,8 +95,8 @@ class Player extends PositionComponent with Resizable {
     if (jumpCount == 1 && !playingIntro && !hasPlayedIntro) {
       status = PlayerStatus.intro;
     }
-    if (playingIntro && x < TRexConfig.startXPos) {
-      x += (TRexConfig.startXPos / TRexConfig.introDuration) * t * 5000;
+    if (playingIntro && x < PlayerConfig.startXPos) {
+      x += (PlayerConfig.startXPos / PlayerConfig.introDuration) * t * 5000;
     }
 
     actualPlayer.x = x;
@@ -115,7 +115,7 @@ class Player extends PositionComponent with Resizable {
     if (size == null) {
       return null;
     }
-    return (size.height / 2) - TRexConfig.height / 2;
+    return (size.height / 2) - PlayerConfig.height / 2;
   }
 
   bool get playingIntro => status == PlayerStatus.intro;
@@ -132,15 +132,15 @@ class PlayerRunning extends AnimationComponent {
             [
               Sprite.fromImage(
                 spriteImage,
-                width: TRexConfig.width,
-                height: TRexConfig.height,
+                width: PlayerConfig.width,
+                height: PlayerConfig.height,
                 y: 4.0,
                 x: 1514.0,
               ),
               Sprite.fromImage(
                 spriteImage,
-                width: TRexConfig.width,
-                height: TRexConfig.height,
+                width: PlayerConfig.width,
+                height: PlayerConfig.height,
                 y: 4.0,
                 x: 1602.0,
               ),
@@ -153,12 +153,12 @@ class PlayerRunning extends AnimationComponent {
 class PlayerWaiting extends SpriteComponent {
   PlayerWaiting(Image spriteImage)
       : super.fromSprite(
-          TRexConfig.width,
-          TRexConfig.height,
+          PlayerConfig.width,
+          PlayerConfig.height,
           Sprite.fromImage(
             spriteImage,
-            width: TRexConfig.width,
-            height: TRexConfig.height,
+            width: PlayerConfig.width,
+            height: PlayerConfig.height,
             x: 76.0,
             y: 6.0,
           ),
@@ -168,12 +168,12 @@ class PlayerWaiting extends SpriteComponent {
 class PlayerJumping extends SpriteComponent {
   PlayerJumping(Image spriteImage)
       : super.fromSprite(
-          TRexConfig.width,
-          TRexConfig.height,
+          PlayerConfig.width,
+          PlayerConfig.height,
           Sprite.fromImage(
             spriteImage,
-            width: TRexConfig.width,
-            height: TRexConfig.height,
+            width: PlayerConfig.width,
+            height: PlayerConfig.height,
             x: 1339.0,
             y: 6.0,
           ),
@@ -183,14 +183,48 @@ class PlayerJumping extends SpriteComponent {
 class PlayerDead extends SpriteComponent {
   PlayerDead(Image spriteImage)
       : super.fromSprite(
-          TRexConfig.width,
-          TRexConfig.height,
+          PlayerConfig.width,
+          PlayerConfig.height,
           Sprite.fromImage(
             spriteImage,
-            width: TRexConfig.width,
-            height: TRexConfig.height,
+            width: PlayerConfig.width,
+            height: PlayerConfig.height,
             x: 1782.0,
             y: 6.0,
           ),
         );
+}
+
+class PlayerConfig {
+  static double gravity = 1;
+  static double height = 90.0;
+  static double heightDuck = 50.0;
+  static double initialJumpVelocity = -15.0;
+  static double introDuration = 1500.0;
+  static double maxJumpHeight = 30.0;
+  static double minJumpHeight = 30.0;
+  static double speedDropCoefficient = 3.0;
+  static double startXPos = 50.0;
+  static double width = 88.0;
+  static double widthDuck = 118.0;
+}
+
+class PlayerCollisionBoxes {
+  static final List<CollisionBox> ducking = <CollisionBox>[
+    const CollisionBox(
+      x: 1.0,
+      y: 18.0,
+      width: 110.0,
+      height: 50.0,
+    ),
+  ];
+
+  static final List<CollisionBox> running = <CollisionBox>[
+    const CollisionBox(x: 22.0, y: 0.0, width: 34.0, height: 32.0),
+    const CollisionBox(x: 1.0, y: 18.0, width: 60.0, height: 18.0),
+    const CollisionBox(x: 10.0, y: 35.0, width: 28.0, height: 16.0),
+    const CollisionBox(x: 1.0, y: 24.0, width: 58.0, height: 10.0),
+    const CollisionBox(x: 5.0, y: 30.0, width: 42.0, height: 8.0),
+    const CollisionBox(x: 9.0, y: 34.0, width: 30.0, height: 8.0)
+  ];
 }
