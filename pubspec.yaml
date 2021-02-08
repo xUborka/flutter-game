@@ -70,6 +70,8 @@ flutter:
     - assets/images/navbar_right.png
     - assets/images/navbar_mid.png
 
+    - assets/images/among-us-01-Sheet.png
+
     - assets/audio/blast.wav
     - assets/audio/blast2.wav
     - assets/audio/title.wav
