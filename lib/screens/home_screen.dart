@@ -21,7 +21,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    _pageController = PageController();
+    _pageController = PageController(initialPage: currentIndex);
     super.initState();
   }
 
@@ -41,7 +41,7 @@ class HomeScreenState extends State<HomeScreen> {
         child: PageView(
           controller: _pageController,
           onPageChanged: (index) {
-            setState(() => currentIndex = index);
+            onTabTapped(index);
           },
           children: viewContainer,
         ),

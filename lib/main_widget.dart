@@ -49,7 +49,7 @@ class _MainWidgetState extends State<MainWidget> with WidgetsBindingObserver {
         '/options': (ctx) => OptionsScreen(),
         '/credits': (ctx) => CreditsScreen(),
       },
-      initialRoute: kReleaseMode ? '/splash' : '/home',
+      initialRoute: kReleaseMode ? '/splash' : '/title',
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: Locale(SettingsManager.currentLocaleCode),

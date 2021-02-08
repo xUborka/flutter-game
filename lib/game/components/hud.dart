@@ -24,7 +24,7 @@ class Hud extends Component with HasGameRef<SpaceGame> {
 
   @override
   void render(Canvas canvas) {
-    ingameTextConfig.render(canvas, 'Score : ${gameRef.score}', Position(gameRef.size.width-150, 2));
+    // ingameTextConfig.render(canvas, 'Score : ${gameRef.score}', Position(gameRef.size.width-150, 2));
 
     // TODO HACK Ugly bitch ass code, just to see how it looks
     for (int i = 0; i < 4; i++){
